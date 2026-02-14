@@ -969,7 +969,7 @@ Era uma vez {artigo} {personagem} muito especial chamad**{artigo_definido}** **{
     if infancia:
         texto += f"## 🧸 CAPÍTULO 19: QUANDO ERA PEQUENO(A)\n\n"
         texto += f"Quando {pronome_sujeito} era pequeno(a), {infancia}. "
-    adolescencia = get_safe('c19_adolescencia')
+        adolescencia = get_safe('c19_adolescencia')
         if adolescencia:
             texto += f"Na adolescência, {adolescencia}. "
         adulta = get_safe('c19_adulta')
@@ -1053,6 +1053,7 @@ with tab_d:
         )
     else:
         st.info("Clique no botão na barra lateral para gerar sua biografia.")
+
 
 
 
