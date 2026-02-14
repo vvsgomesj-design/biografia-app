@@ -168,13 +168,7 @@ with st.sidebar:
             st.session_state.livro_gerado = gerar_biografia_infantil(gen)
         st.success("Biografia gerada!")
 
-# ABA DO LIVRO
-with tab_d:
-    if st.session_state.livro_gerado:
-        st.markdown(st.session_state.livro_gerado)
-        st.download_button("📥 Baixar Biografia", st.session_state.livro_gerado, file_name="biografia.txt")
-    else:
-        st.info("Preencha as informações e clique em 'Gerar' na lateral.")
+
 
 
 
