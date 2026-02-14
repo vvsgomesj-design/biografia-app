@@ -648,94 +648,112 @@ Cada um de nós carrega dentro de si um universo particular de interesses, talen
 ---
 """
 
-    # Hobby principal
+    # ---- CAPÍTULO 14: HOBBY PRINCIPAL ----
+    conteudo_c14 = ""
     hobby = get_safe('c14_hobby')
     if hobby:
-        texto += f"## 🌟 Meu Hobby Favorito\n\n"
-        texto += f"Entre todas as atividades que poderiam preencher seu tempo livre, **{nome}** elegeu {hobby} como sua favorita. "
-        origem = get_safe('c14_origem')
-        if origem:
-            texto += f"Essa paixão não surgiu por acaso: ela nasceu {origem}, talvez em um momento de descoberta ou inspiração. "
-        paz = get_safe('c14_paz')
-        if paz:
-            texto += f"Em meio às atribulações da vida, {hobby} se tornou um refúgio. {nome} recorda com emoção: *\"{paz}\"*. "
-        frase = get_safe('c14_frase_capa')
-        if frase:
-            texto += f"\n\nSe fosse preciso resumir esse hobby em uma frase, ela seria: **\"{frase}\"**. "
-        texto += "\n\n"
+        conteudo_c14 += f"**{nome}** adora **{hobby}**. "
+    origem = get_safe('c14_origem')
+    if origem:
+        conteudo_c14 += f"Essa paixão começou {origem}. "
+    paz = get_safe('c14_paz')
+    if paz:
+        conteudo_c14 += f"Em um momento difícil, essa atividade trouxe paz: \"{paz}\". "
+    frase = get_safe('c14_frase_capa')
+    if frase:
+        conteudo_c14 += f"Se fosse resumir em uma frase: **\"{frase}\"**. "
 
-    # Outros talentos (capítulo 4)
+    if conteudo_c14:
+        texto += "## 🌟 MEU HOBBY FAVORITO\n\n" + conteudo_c14 + "\n\n"
+
+    # ---- CAPÍTULO 4: TALENTOS ----
+    conteudo_c4 = ""
     talentos = get_safe('c4_talentos')
     if talentos:
-        texto += f"## ✨ Talentos que Brilham\n\n"
-        texto += f"Além do hobby principal, {nome} é dotado de talentos especiais: {talentos}. "
-        texto += f"São habilidades que, muitas vezes, surpreendem até a si mesmo. "
-        desafio = get_safe('c4_desafio')
-        if desafio:
-            texto += f"Um dia, ao enfrentar o desafio de {desafio}, {nome} descobriu que seus talentos podiam ir muito além do que imaginava. "
-        aprendizado = get_safe('c4_aprendizado')
-        if aprendizado:
-            texto += f"Essa experiência trouxe uma lição valiosa: {aprendizado}. "
-        texto += "\n\n"
+        conteudo_c4 += f"Além do hobby, {nome} tem talentos especiais: {talentos}. "
+    autentico = get_safe('c4_autentico')
+    if autentico:
+        conteudo_c4 += f"Um momento de autenticidade foi quando {autentico}. "
+    desafio = get_safe('c4_desafio')
+    if desafio:
+        conteudo_c4 += f"Um desafio que enfrentou: {desafio}. "
+    aprendizado = get_safe('c4_aprendizado')
+    if aprendizado:
+        conteudo_c4 += f"Com isso, aprendeu que {aprendizado}. "
 
-    # Infância e fases da vida
+    if conteudo_c4:
+        texto += "## ✨ TALENTOS QUE BRILHAM\n\n" + conteudo_c4 + "\n\n"
+
+    # ---- CAPÍTULO 19: FASES DA VIDA ----
+    conteudo_c19 = ""
     infancia = get_safe('c19_infancia')
     adolescencia = get_safe('c19_adolescencia')
     adulta = get_safe('c19_adulta')
-    if infancia or adolescencia or adulta:
-        texto += f"## 🌱 Ao Longo da Vida\n\n"
-        if infancia:
-            texto += f"Na infância, {infancia}. Esses momentos ajudaram a moldar sua personalidade. "
-        if adolescencia:
-            texto += f"Na adolescência, {adolescencia}. Foi uma fase de descobertas e de formação de caráter. "
-        if adulta:
-            texto += f"Na vida adulta, {adulta}. Essa etapa trouxe maturidade e novas perspectivas. "
-        aprendizado_fases = get_safe('c19_aprendizado')
-        if aprendizado_fases:
-            texto += f"Olhando para trás, {nome} reflete: *\"{aprendizado_fases}\"*. "
-        texto += "\n\n"
+    if infancia:
+        conteudo_c19 += f"Na infância, {infancia}. "
+    if adolescencia:
+        conteudo_c19 += f"Na adolescência, {adolescencia}. "
+    if adulta:
+        conteudo_c19 += f"Na vida adulta, {adulta}. "
+    aprendizado_fases = get_safe('c19_aprendizado')
+    if aprendizado_fases:
+        conteudo_c19 += f"Cada fase trouxe o aprendizado: {aprendizado_fases}. "
 
-    # Conquistas marcantes
+    if conteudo_c19:
+        texto += "## 🌱 AO LONGO DA VIDA\n\n" + conteudo_c19 + "\n\n"
+
+    # ---- CAPÍTULO 8: CONQUISTAS MARCANTES ----
+    conteudo_c8 = ""
     memoria = get_safe('c8_memoria')
     if memoria:
-        texto += f"## 🏆 Conquistas que Marcaram\n\n"
-        texto += f"Entre tantas memórias, uma se destaca: {memoria}. "
-        aprendizado_conquista = get_safe('c8_aprendizado')
-        if aprendizado_conquista:
-            texto += f"Essa conquista ensinou que {aprendizado_conquista}. "
-        texto += "\n\n"
+        conteudo_c8 += f"Uma conquista marcante: {memoria}. "
+    aprendizado_conquista = get_safe('c8_aprendizado')
+    if aprendizado_conquista:
+        conteudo_c8 += f"Isso ensinou que {aprendizado_conquista}. "
 
-    # Pequenos hábitos, grandes mudanças
-    exemplo_habito = get_safe('c20_exemplo')
-    if exemplo_habito:
-        texto += f"## 🌿 Pequenas Ações, Grandes Transformações\n\n"
-        texto += f"{nome} acredita no poder dos pequenos hábitos. Um exemplo marcante foi quando {exemplo_habito}. "
-        dificuldade = get_safe('c20_dificuldade')
-        if dificuldade:
-            texto += f"Claro, nem sempre é fácil manter a constância; a maior dificuldade enfrentada é {dificuldade}. "
-        texto += "Mesmo assim, a perseverança tem sido uma companheira fiel.\n\n"
+    if conteudo_c8:
+        texto += "## 🏆 CONQUISTAS MARCANTES\n\n" + conteudo_c8 + "\n\n"
 
-    # Reflexão sobre o futuro (capítulo 21)
+    # ---- CAPÍTULO 20: PEQUENOS HÁBITOS ----
+    conteudo_c20 = ""
+    habito = get_safe('c20_habito')
+    exemplo = get_safe('c20_exemplo')
+    dificuldade = get_safe('c20_dificuldade')
+
+    if habito:
+        conteudo_c20 += f"{nome} {habito.lower()} consegue manter um hábito por 21 dias. "
+    if exemplo:
+        conteudo_c20 += f"Um pequeno hábito que trouxe grande mudança: {exemplo}. "
+    if dificuldade:
+        conteudo_c20 += f"A maior dificuldade para manter a constância é {dificuldade}. "
+
+    if conteudo_c20:
+        texto += "## 🌿 O PODER DOS PEQUENOS HÁBITOS\n\n" + conteudo_c20 + "\n\n"
+
+    # ---- CAPÍTULO 21: SONHOS PARA O FUTURO ----
+    conteudo_c21 = ""
     sonho = get_safe('c21_sonho')
+    plano = get_safe('c21_plano')
     if sonho:
-        texto += f"## 🔮 Olhando para o Futuro\n\n"
-        texto += f"Quando pensa no amanhã, {nome} nutre um sonho especial: {sonho}. "
-        plano = get_safe('c21_plano')
-        if plano:
-            texto += f"Para torná-lo realidade, já vislumbra alguns passos: {plano}. "
-        texto += "\n\n"
+        conteudo_c21 += f"Seu principal sonho é {sonho}. "
+    if plano:
+        conteudo_c21 += f"Para realizá-lo, planeja {plano}. "
 
-    # Legado final (capítulo 26)
+    if conteudo_c21:
+        texto += "## 🔮 OLHANDO PARA O FUTURO\n\n" + conteudo_c21 + "\n\n"
+
+    # ---- CAPÍTULO 26: LEGADO FINAL ----
     legado = get_safe('c26_legado')
     if legado:
-        texto += f"## 💖 Mensagem Final\n\n"
+        texto += "## 💖 MENSAGEM FINAL\n\n"
         texto += f"{legado}\n\n"
 
-    # Conclusão inspiradora
+    # ---- CONCLUSÃO INSPIRADORA ----
     texto += "---\n"
     texto += "## PARA SEMPRE...\n\n"
     texto += f"A história de {nome} é feita de pequenos e grandes momentos, de hobbies que aquecem a alma e talentos que iluminam o caminho. Que esta biografia sirva como um lembrete de que cada passatempo, cada conquista e cada desafio são peças preciosas no mosaico da vida. Que venham muitos novos capítulos, repletos de criatividade, alegria e propósito!\n\n"
     texto += f"*Com admiração e carinho,\n{nome}*"
+
     return texto
 
 
@@ -755,91 +773,104 @@ def gerar_biografia_profissional():
 
 ---
 """
-    # Formação acadêmica e capacitação
+
+    # ---- CAPÍTULO 10: FORMAÇÃO E CAPACITAÇÃO ----
+    conteudo_c10 = ""
     formacao = get_safe('c10_formacao')
     cursos = get_safe('c10_cursos')
     graduacoes = get_safe('c10_graduacoes')
     certificacoes = get_safe('c10_certificacoes')
-    if formacao or cursos or graduacoes or certificacoes:
-        texto += "## 📚 FORMAÇÃO ACADÊMICA E CAPACITAÇÃO\n\n"
-        if graduacoes:
-            texto += f"**Graduações:** {graduacoes}\n\n"
-        if formacao:
-            texto += f"**Formação complementar:** {formacao}\n\n"
-        if cursos:
-            texto += f"**Cursos e treinamentos:** {cursos}\n\n"
-        if certificacoes:
-            texto += f"**Certificações de destaque:** {certificacoes}\n\n"
 
-    # Experiências profissionais
+    if formacao:
+        conteudo_c10 += f"• {formacao}\n"
+    if cursos:
+        conteudo_c10 += f"• Cursos: {cursos}\n"
+    if graduacoes:
+        conteudo_c10 += f"• Graduações: {graduacoes}\n"
+    if certificacoes:
+        conteudo_c10 += f"• Certificações: {certificacoes}\n"
+
+    if conteudo_c10:
+        texto += "## 📚 FORMAÇÃO ACADÊMICA E CAPACITAÇÃO\n\n" + conteudo_c10 + "\n"
+
+    # ---- CAPÍTULO 10: EXPERIÊNCIAS PROFISSIONAIS ----
     experiencias = get_safe('c10_experiencias')
     if experiencias:
         texto += "## 💼 EXPERIÊNCIAS PROFISSIONAIS RELEVANTES\n\n"
         texto += f"{experiencias}\n\n"
 
-    # Competências e habilidades
-    competencias = get_safe('c10_competencias')
+    # ---- CAPÍTULO 4 E 10: COMPETÊNCIAS E HABILIDADES ----
+    conteudo_comp = ""
     talentos = get_safe('c4_talentos')
-    if competencias or talentos:
-        texto += "## ⚡ COMPETÊNCIAS E HABILIDADES\n\n"
-        if talentos:
-            texto += f"**Principais talentos:** {talentos}\n\n"
-        if competencias:
-            texto += f"**Competências desenvolvidas:** {competencias}\n\n"
+    competencias = get_safe('c10_competencias')
 
-    # Desafios e superações
+    if talentos:
+        conteudo_comp += f"• **Principais talentos:** {talentos}\n"
+    if competencias:
+        conteudo_comp += f"• **Competências desenvolvidas:** {competencias}\n"
+
+    if conteudo_comp:
+        texto += "## ⚡ COMPETÊNCIAS E HABILIDADES\n\n" + conteudo_comp + "\n"
+
+    # ---- CAPÍTULO 4 E 10: DESAFIOS E SUPERAÇÕES ----
+    conteudo_desafios = ""
     desafio = get_safe('c4_desafio')
     aprendizado = get_safe('c4_aprendizado')
     maiores_desafios = get_safe('c10_maiores_desafios')
-    if desafio or maiores_desafios:
-        texto += "## 🚀 DESAFIOS E SUPERAÇÕES\n\n"
-        if desafio:
-            texto += f"Um dos desafios mais marcantes foi: {desafio}. "
-        if aprendizado:
-            texto += f"Essa experiência trouxe o aprendizado de que {aprendizado}. "
-        if maiores_desafios:
-            texto += f"Além disso, {nome} enfrentou outros obstáculos: {maiores_desafios}. "
-        texto += "\n\n"
 
-    # Aplicação do conhecimento
+    if desafio:
+        conteudo_desafios += f"• **Desafio marcante:** {desafio}\n"
+    if aprendizado:
+        conteudo_desafios += f"• **Aprendizado:** {aprendizado}\n"
+    if maiores_desafios:
+        conteudo_desafios += f"• **Outros desafios:** {maiores_desafios}\n"
+
+    if conteudo_desafios:
+        texto += "## 🚀 DESAFIOS E SUPERAÇÕES\n\n" + conteudo_desafios + "\n"
+
+    # ---- CAPÍTULO 10: APLICAÇÃO DO CONHECIMENTO ----
     aplicacao = get_safe('c10_aplicacao_conhecimento')
     if aplicacao:
         texto += "## 🧠 APLICAÇÃO DO CONHECIMENTO\n\n"
         texto += f"{aplicacao}\n\n"
 
-    # Resultados alcançados
+    # ---- CAPÍTULO 10: RESULTADOS ALCANÇADOS ----
     resultados = get_safe('c10_resultados_concretos')
     if resultados:
         texto += "## 📈 RESULTADOS ALCANÇADOS\n\n"
         texto += f"{resultados}\n\n"
 
-    # Objetivo profissional
+    # ---- CAPÍTULO 11: OBJETIVO PROFISSIONAL ----
     objetivo = get_safe('c11_objetivo_profissional')
     if objetivo:
         texto += "## 🎯 OBJETIVO PROFISSIONAL\n\n"
         texto += f"{objetivo}\n\n"
 
-    # Visão de futuro
+    # ---- CAPÍTULO 21: VISÃO DE FUTURO ----
+    conteudo_futuro = ""
     sonho = get_safe('c21_sonho')
     plano = get_safe('c21_plano')
-    if sonho or plano:
-        texto += "## 🔮 VISÃO DE FUTURO\n\n"
-        if sonho:
-            texto += f"{nome} sonha com {sonho}. "
-        if plano:
-            texto += f"Para chegar lá, planeja {plano}. "
-        texto += "\n\n"
 
-    # Legado e mensagem final
+    if sonho:
+        conteudo_futuro += f"• **Sonho/objetivo:** {sonho}\n"
+    if plano:
+        conteudo_futuro += f"• **Passos planejados:** {plano}\n"
+
+    if conteudo_futuro:
+        texto += "## 🔮 VISÃO DE FUTURO\n\n" + conteudo_futuro + "\n"
+
+    # ---- CAPÍTULO 26: LEGADO FINAL ----
     legado = get_safe('c26_legado')
     if legado:
         texto += "## 💬 MENSAGEM DE LEGADO\n\n"
         texto += f"{legado}\n\n"
 
+    # ---- CONSIDERAÇÕES FINAIS ----
     texto += "---\n"
     texto += "## CONSIDERAÇÕES FINAIS\n\n"
     texto += f"A trajetória de {nome} é um exemplo de como a determinação, o aprendizado constante e a paixão pelo trabalho podem construir uma carreira significativa. Que este perfil sirva de inspiração e de registro para as futuras conquistas que ainda virão.\n\n"
     texto += f"*{nome}*"
+
     return texto
 
 
@@ -854,7 +885,7 @@ def gerar_biografia_infantil(genero):
         pronome_possessivo = "sua"
         artigo_definido = "a"
         personagem = "princesa"
-    else:  # Menino
+    else:
         artigo = "um"
         pronome_sujeito = "ele"
         pronome_objeto = "o"
@@ -876,407 +907,466 @@ Era uma vez {artigo} {personagem} muito especial chamad{artigo_definido} **{nome
 """
 
     # Capítulo 1 – Aprendizado
-    texto += "## 📖 CAPÍTULO 1: A MENTE QUE APRENDE\n\n"
+    conteudo_c1 = ""
     mudanca = get_safe('c1_mudanca')
     if mudanca == "Sim":
-        texto += f"{nome} sabia que podia mudar e aprender coisas novas todos os dias. Para {pronome_objeto}, cada dia era uma nova aventura de aprendizado. "
+        conteudo_c1 += f"{nome} sabia que podia mudar e aprender coisas novas todos os dias. Para {pronome_objeto}, cada dia era uma nova aventura de aprendizado. "
+    elif mudanca == "Não":
+        conteudo_c1 += f"{nome} achava que não podia mudar, mas estava aprendendo que sim, é possível. "
     else:
-        texto += f"{nome} estava descobrindo que aprender coisas novas é uma grande aventura, mesmo quando parece difícil. "
+        conteudo_c1 += f"{nome} estava descobrindo que aprender coisas novas é uma grande aventura, mesmo quando parece difícil. "
+
     freq = get_safe('c1_aprendizado')
     if freq and freq != "Nunca":
-        texto += f"{pronome_sujeito.capitalize()} gostava de aprender {freq.lower()}, sempre curioso(a) para saber mais. "
+        conteudo_c1 += f"{pronome_sujeito.capitalize()} gostava de aprender {freq.lower()}, sempre curioso(a) para saber mais. "
+
     reacao = get_safe('c1_reacao')
     if reacao:
         if "Persistir" in reacao:
-            texto += f"Quando um desafio aparecia, {pronome_sujeito} não desistia: respirava fundo e tentava de novo, de um jeito diferente. "
+            conteudo_c1 += f"Quando um desafio aparecia, {pronome_sujeito} não desistia: respirava fundo e tentava de novo, de um jeito diferente. "
         elif "Desistir" in reacao:
-            texto += f"Às vezes {pronome_sujeito} queria desistir, mas aprendia que pedir ajuda também é uma forma de vencer. "
+            conteudo_c1 += f"Às vezes {pronome_sujeito} queria desistir, mas aprendia que pedir ajuda também é uma forma de vencer. "
         else:
-            texto += f"Quando algo era difícil, {pronome_sujeito} aprendia a esperar e confiar. "
+            conteudo_c1 += f"Quando algo era difícil, {pronome_sujeito} aprendia a esperar e confiar. "
+
     habitos = get_safe('c1_habitos')
     if habitos == "Sim":
-        texto += f"Já percebeu que, quando criava novos hábitos, coisas boas começavam a acontecer ao {pronome_possessivo} redor. "
+        conteudo_c1 += f"Já percebeu que, quando criava novos hábitos, coisas boas começavam a acontecer ao {pronome_possessivo} redor. "
+
     motiva = get_safe('c1_motiva')
     if motiva:
-        texto += f"O que mais {pronome_objeto} motivava a mudar era {motiva}. "
+        conteudo_c1 += f"O que mais {pronome_objeto} motivava a mudar era {motiva}. "
+
     renovar = get_safe('c1_renovar')
     if renovar:
-        texto += f"Para {pronome_objeto}, 'renovar a mente' significava {renovar}. "
-    texto += "\n\n"
+        conteudo_c1 += f"Para {pronome_objeto}, 'renovar a mente' significava {renovar}. "
+
+    if conteudo_c1:
+        texto += "## 📖 CAPÍTULO 1: A MENTE QUE APRENDE\n\n" + conteudo_c1 + "\n\n"
 
     # Capítulo 2 – Identidade
-    texto += "## 👑 CAPÍTULO 2: QUEM EU SOU\n\n"
+    conteudo_c2 = ""
     heranca = get_safe('c2_heranca')
     if heranca:
         if "herdeiro" in heranca.lower():
-            texto += f"{nome} sabia que era muito especial: {pronome_sujeito} era filho amado de Deus, herdeiro de um grande Rei! Isso fazia {pronome_objeto} se sentir protegido(a) e amado(a) para sempre. "
+            conteudo_c2 += f"{nome} sabia que era muito especial: {pronome_sujeito} era filho amado de Deus, herdeiro de um grande Rei! Isso fazia {pronome_objeto} se sentir protegido(a) e amado(a) para sempre. "
         else:
-            texto += f"{nome} estava aprendendo que cada pessoa é única e tem um valor imenso, assim como {pronome_sujeito}. "
+            conteudo_c2 += f"{nome} estava aprendendo que cada pessoa é única e tem um valor imenso, assim como {pronome_sujeito}. "
+
     desafios = get_safe('c2_desafios')
     if desafios:
         if "oportunidades" in desafios.lower():
-            texto += f"Quando enfrentava dificuldades, lembrava que podia crescer com elas, como uma árvore que fica mais forte depois da tempestade. "
+            conteudo_c2 += f"Quando enfrentava dificuldades, lembrava que podia crescer com elas, como uma árvore que fica mais forte depois da tempestade. "
         else:
-            texto += f"Às vezes os desafios assustavam, mas {pronome_sujeito} nunca deixava de tentar. "
+            conteudo_c2 += f"Às vezes os desafios assustavam, mas {pronome_sujeito} nunca deixava de tentar. "
+
     promessas = get_safe('c2_promessas')
     if promessas and "promessas" in promessas.lower():
-        texto += f"Guardava no coração as promessas de Deus, como um tesouro precioso. "
+        conteudo_c2 += f"Guardava no coração as promessas de Deus, como um tesouro precioso. "
+
     eternidade = get_safe('c2_eternidade')
     if eternidade:
-        texto += f"Pensar no futuro eterno {pronome_objeto} fazia sentir {eternidade.lower()}. "
+        conteudo_c2 += f"Pensar no futuro eterno {pronome_objeto} fazia sentir {eternidade.lower()}. "
+
     reflexao2 = get_safe('c2_reflexao')
     if reflexao2:
-        texto += f"{nome} refletia: \"{reflexao2}\". "
-    texto += "\n\n"
+        conteudo_c2 += f"{nome} refletia: \"{reflexao2}\". "
+
+    if conteudo_c2:
+        texto += "## 👑 CAPÍTULO 2: QUEM EU SOU\n\n" + conteudo_c2 + "\n\n"
 
     # Capítulo 3 – Corpo e Espírito
-    texto += "## ❤️ CAPÍTULO 3: O CORPO E O CORAÇÃO\n\n"
+    conteudo_c3 = ""
     corpo = get_safe('c3_corpo', [])
     if isinstance(corpo, list) and corpo:
-        texto += f"{nome} cuidava do {pronome_possessivo} corpo como quem cuida de um jardim: {', '.join(corpo)}. "
+        conteudo_c3 += f"{nome} cuidava do {pronome_possessivo} corpo como quem cuida de um jardim: {', '.join(corpo)}. "
     else:
-        texto += f"{nome} estava aprendendo a cuidar melhor do corpo, que é a casa onde moramos. "
+        conteudo_c3 += f"{nome} estava aprendendo a cuidar melhor do corpo, que é a casa onde moramos. "
+
     espirito = get_safe('c3_espirito', [])
     if isinstance(espirito, list) and espirito:
-        texto += f"Para o espírito, {pronome_sujeito} gostava de {', '.join(espirito)}. "
+        conteudo_c3 += f"Para o espírito, {pronome_sujeito} gostava de {', '.join(espirito)}. "
+
     equilibrio = get_safe('c3_equilibrio')
     if equilibrio:
-        texto += f"Refletindo sobre o equilíbrio entre corpo e espírito, {nome} pensava: \"{equilibrio}\". "
-    texto += "\n\n"
+        conteudo_c3 += f"Refletindo sobre o equilíbrio entre corpo e espírito, {nome} pensava: \"{equilibrio}\". "
+
+    if conteudo_c3:
+        texto += "## ❤️ CAPÍTULO 3: O CORPO E O CORAÇÃO\n\n" + conteudo_c3 + "\n\n"
 
     # Capítulo 4 – Talentos
+    conteudo_c4 = ""
     talentos = get_safe('c4_talentos')
     if talentos:
-        texto += f"## ✨ CAPÍTULO 4: TALENTOS ESPECIAIS\n\n"
-        texto += f"{nome} tinha talentos incríveis, como {talentos}. Eram dons que faziam {pronome_objeto} brilhar. "
-        autentico = get_safe('c4_autentico')
-        if autentico:
-            texto += f"Um momento em que se sentiu verdadeiramente autêntico(a) foi quando {autentico}. "
-        desafio4 = get_safe('c4_desafio')
-        if desafio4:
-            texto += f"Um dia, enfrentou um desafio: {desafio4}. Mas, com coragem, seguiu em frente. "
-        aprendizado4 = get_safe('c4_aprendizado')
-        if aprendizado4:
-            texto += f"Com isso, aprendeu que {aprendizado4}. "
-    texto += "\n\n"
+        conteudo_c4 += f"{nome} tinha talentos incríveis, como {talentos}. Eram dons que faziam {pronome_objeto} brilhar. "
+
+    autentico = get_safe('c4_autentico')
+    if autentico:
+        conteudo_c4 += f"Um momento em que se sentiu verdadeiramente autêntico(a) foi quando {autentico}. "
+
+    desafio4 = get_safe('c4_desafio')
+    if desafio4:
+        conteudo_c4 += f"Um dia, enfrentou um desafio: {desafio4}. Mas, com coragem, seguiu em frente. "
+
+    aprendizado4 = get_safe('c4_aprendizado')
+    if aprendizado4:
+        conteudo_c4 += f"Com isso, aprendeu que {aprendizado4}. "
+
+    if conteudo_c4:
+        texto += "## ✨ CAPÍTULO 4: TALENTOS ESPECIAIS\n\n" + conteudo_c4 + "\n\n"
 
     # Capítulo 5 – Alcance
+    conteudo_c5 = ""
     alcance_local = get_safe('c5_local')
     alcance_regional = get_safe('c5_regional')
     alcance_internacional = get_safe('c5_internacional')
-    if alcance_local or alcance_regional or alcance_internacional:
-        texto += f"## 🌍 CAPÍTULO 5: O ALCANCE DA SUA HISTÓRIA\n\n"
-        if alcance_local == "Sim":
-            texto += f"{nome} acreditava que sua história podia impactar as pessoas ao redor. "
-        if alcance_regional == "Sim":
-            texto += f"Sabia que sua trajetória podia inspirar pessoas fora do seu círculo. "
-        if alcance_internacional == "Sim":
-            texto += f"Imaginava que sua história podia até alcançar diferentes culturas e países! "
-        reflexao5 = get_safe('c5_reflexao')
-        if reflexao5:
-            texto += f"Para {pronome_objeto}, sua história merecia ser contada porque {reflexao5}. "
-    texto += "\n\n"
+    if alcance_local == "Sim":
+        conteudo_c5 += f"{nome} acreditava que sua história podia impactar as pessoas ao redor. "
+    if alcance_regional == "Sim":
+        conteudo_c5 += f"Sabia que sua trajetória podia inspirar pessoas fora do seu círculo. "
+    if alcance_internacional == "Sim":
+        conteudo_c5 += f"Imaginava que sua história podia até alcançar diferentes culturas e países! "
+    reflexao5 = get_safe('c5_reflexao')
+    if reflexao5:
+        conteudo_c5 += f"Para {pronome_objeto}, sua história merecia ser contada porque {reflexao5}. "
+
+    if conteudo_c5:
+        texto += "## 🌍 CAPÍTULO 5: O ALCANCE DA SUA HISTÓRIA\n\n" + conteudo_c5 + "\n\n"
 
     # Capítulo 6 – Posição bíblica
-    texto += "## 📖 CAPÍTULO 6: A BÍBLIA NA VIDA\n\n"
+    conteudo_c6 = ""
     crise = get_safe('c6_crise')
     if crise == "Sim":
-        texto += f"Em momentos de crise, {nome} sempre buscava aprendizado. "
+        conteudo_c6 += f"Em momentos de crise, {nome} sempre buscava aprendizado. "
     carater = get_safe('c6_carater')
     if carater == "Sim":
-        texto += f"Sabia que suas decisões revelavam seu caráter. "
+        conteudo_c6 += f"Sabia que suas decisões revelavam seu caráter. "
     emocoes = get_safe('c6_emocoes')
     if emocoes == "Sim":
-        texto += f"Prestava atenção às suas emoções antes de agir. "
+        conteudo_c6 += f"Prestava atenção às suas emoções antes de agir. "
     arrependimento = get_safe('c6_arrependimento')
     if arrependimento == "Sim":
-        texto += f"Praticava o arrependimento como uma mudança real de atitude. "
+        conteudo_c6 += f"Praticava o arrependimento como uma mudança real de atitude. "
     fidelidade = get_safe('c6_fidelidade')
     if fidelidade == "Sim":
-        texto += f"Mantinha-se fiel aos seus compromissos mesmo quando ninguém estava olhando. "
+        conteudo_c6 += f"Mantinha-se fiel aos seus compromissos mesmo quando ninguém estava olhando. "
     reflexao6 = get_safe('c6_reflexao')
     if reflexao6:
-        texto += f"Sobre a influência dos princípios bíblicos, {nome} disse: \"{reflexao6}\". "
-    texto += "\n\n"
+        conteudo_c6 += f"Sobre a influência dos princípios bíblicos, {nome} disse: \"{reflexao6}\". "
+
+    if conteudo_c6:
+        texto += "## 📖 CAPÍTULO 6: A BÍBLIA NA VIDA\n\n" + conteudo_c6 + "\n\n"
 
     # Capítulo 7 – Trampolim
-    texto += "## 🚀 CAPÍTULO 7: O MOMENTO DE DAR O SALTO\n\n"
+    conteudo_c7 = ""
     proativo = get_safe('c7_proativo')
     if proativo == "Sim":
-        texto += f"{nome} sempre foi uma pessoa proativa, que não esperava as coisas acontecerem. "
+        conteudo_c7 += f"{nome} sempre foi uma pessoa proativa, que não esperava as coisas acontecerem. "
     estagnacao = get_safe('c7_estagnacao')
     if estagnacao == "Sim":
         area_estagnacao = get_safe('c7_area')
         if area_estagnacao:
-            texto += f"Sentia que estava estagnado(a) em {area_estagnacao}, mas isso não o(a) paralisava. "
+            conteudo_c7 += f"Sentia que estava estagnado(a) em {area_estagnacao}, mas isso não o(a) paralisava. "
     decisao = get_safe('c7_decisao')
     if decisao:
-        texto += f"Sabia que {decisao} era o momento de mudar. "
+        conteudo_c7 += f"Sabia que {decisao} era o momento de mudar. "
     reflexao7 = get_safe('c7_reflexao')
     if reflexao7:
-        texto += f"O que funcionava como trampolim para o próximo nível era: {reflexao7}. "
-    texto += "\n\n"
+        conteudo_c7 += f"O que funcionava como trampolim para o próximo nível era: {reflexao7}. "
+
+    if conteudo_c7:
+        texto += "## 🚀 CAPÍTULO 7: O MOMENTO DE DAR O SALTO\n\n" + conteudo_c7 + "\n\n"
 
     # Capítulo 8 – Conquistas
+    conteudo_c8 = ""
     memoria = get_safe('c8_memoria')
     if memoria:
-        texto += f"## 🏅 CAPÍTULO 8: UMA CONQUISTA MUITO ESPECIAL\n\n"
-        texto += f"Um momento que marcou {pronome_possessivo} vida para sempre foi: {memoria}. "
-        celebra = get_safe('c8_celebra')
-        if celebra:
-            texto += f"{nome} costumava celebrar suas vitórias {celebra.lower()}. "
-        aprendizado_conquista = get_safe('c8_aprendizado')
-        if aprendizado_conquista:
-            texto += f"Com essa conquista, {pronome_sujeito} aprendeu que {aprendizado_conquista}. "
-    texto += "\n\n"
+        conteudo_c8 += f"Um momento que marcou {pronome_possessivo} vida para sempre foi: {memoria}. "
+    celebra = get_safe('c8_celebra')
+    if celebra:
+        conteudo_c8 += f"{nome} costumava celebrar suas vitórias {celebra.lower()}. "
+    aprendizado_conquista = get_safe('c8_aprendizado')
+    if aprendizado_conquista:
+        conteudo_c8 += f"Com essa conquista, {pronome_sujeito} aprendeu que {aprendizado_conquista}. "
+
+    if conteudo_c8:
+        texto += "## 🏅 CAPÍTULO 8: UMA CONQUISTA MUITO ESPECIAL\n\n" + conteudo_c8 + "\n\n"
 
     # Capítulo 9 – Público e propósito
+    conteudo_c9 = ""
     publico = get_safe('c9_publico', [])
     if isinstance(publico, list) and publico:
-        texto += f"## 🎯 CAPÍTULO 9: PARA QUEM ESCREVO\n\n"
-        texto += f"{nome} imaginava sua biografia sendo lida por {', '.join(publico)}. "
-        por_que = get_safe('c9_por_que', [])
-        if isinstance(por_que, list) and por_que:
-            texto += f"Queria contar sua história para {', '.join(por_que)}. "
-        como = get_safe('c9_como', [])
-        if isinstance(como, list) and como:
-            texto += f"Desejava que o leitor se sentisse {', '.join(como)}. "
-        impacto = get_safe('c9_reflexao')
-        if impacto:
-            texto += f"O impacto esperado era: {impacto}. "
-    texto += "\n\n"
+        conteudo_c9 += f"{nome} imaginava sua biografia sendo lida por {', '.join(publico)}. "
+    por_que = get_safe('c9_por_que', [])
+    if isinstance(por_que, list) and por_que:
+        conteudo_c9 += f"Queria contar sua história para {', '.join(por_que)}. "
+    como = get_safe('c9_como', [])
+    if isinstance(como, list) and como:
+        conteudo_c9 += f"Desejava que o leitor se sentisse {', '.join(como)}. "
+    impacto = get_safe('c9_reflexao')
+    if impacto:
+        conteudo_c9 += f"O impacto esperado era: {impacto}. "
+
+    if conteudo_c9:
+        texto += "## 🎯 CAPÍTULO 9: PARA QUEM ESCREVO\n\n" + conteudo_c9 + "\n\n"
 
     # Capítulo 10 – Análise curricular
+    conteudo_c10 = ""
     formacao = get_safe('c10_formacao')
     experiencias10 = get_safe('c10_experiencias')
     competencias10 = get_safe('c10_competencias')
-    if formacao or experiencias10 or competencias10:
-        texto += f"## 📚 CAPÍTULO 10: CAMINHOS DE APRENDIZADO\n\n"
-        if formacao:
-            texto += f"Sua formação incluiu: {formacao}. "
-        if experiencias10:
-            texto += f"Experiências marcantes: {experiencias10}. "
-        if competencias10:
-            texto += f"Competências desenvolvidas: {competencias10}. "
-        reflexao10 = get_safe('c10_reflexao')
-        if reflexao10:
-            texto += f"Tudo isso {pronome_objeto} preparou para o futuro: {reflexao10}. "
-    texto += "\n\n"
+    if formacao:
+        conteudo_c10 += f"Sua formação incluiu: {formacao}. "
+    if experiencias10:
+        conteudo_c10 += f"Experiências marcantes: {experiencias10}. "
+    if competencias10:
+        conteudo_c10 += f"Competências desenvolvidas: {competencias10}. "
+    reflexao10 = get_safe('c10_reflexao')
+    if reflexao10:
+        conteudo_c10 += f"Tudo isso {pronome_objeto} preparou para o futuro: {reflexao10}. "
+
+    if conteudo_c10:
+        texto += "## 📚 CAPÍTULO 10: CAMINHOS DE APRENDIZADO\n\n" + conteudo_c10 + "\n\n"
 
     # Capítulo 11 – Seleção
+    conteudo_c11 = ""
     etica = get_safe('c11_etica')
     if etica == "Sim":
-        texto += f"## ⚖️ CAPÍTULO 11: ESCOLHAS COM ÉTICA\n\n"
-        texto += f"{nome} sempre priorizou a ética em suas escolhas. "
+        conteudo_c11 += f"{nome} sempre priorizou a ética em suas escolhas. "
     contratacoes = get_safe('c11_contratacoes', [])
     if isinstance(contratacoes, list) and contratacoes:
-        texto += f"Para seu projeto, considerou contratar {', '.join(contratacoes)}. "
+        conteudo_c11 += f"Para seu projeto, considerou contratar {', '.join(contratacoes)}. "
     criterios = get_safe('c11_criterios')
     if criterios:
-        texto += f"Seus critérios essenciais eram: {criterios}. "
-    texto += "\n\n"
+        conteudo_c11 += f"Seus critérios essenciais eram: {criterios}. "
+
+    if conteudo_c11:
+        texto += "## ⚖️ CAPÍTULO 11: ESCOLHAS COM ÉTICA\n\n" + conteudo_c11 + "\n\n"
 
     # Capítulo 12 – Virada
+    conteudo_c12 = ""
     virada = get_safe('c12_virada')
     if virada:
-        texto += f"## 🔄 CAPÍTULO 12: O DIA QUE TUDO MUDOU\n\n"
-        texto += f"{virada} "
-        aprendeu12 = get_safe('c12_aprendeu')
-        if aprendeu12:
-            texto += f"Isso {pronome_objeto} ensinou que {aprende12}. "
-        aplicacao = get_safe('c12_aplicacao')
-        if aplicacao:
-            texto += f"Depois disso, {pronome_sujeito} passou a aplicar o que aprendia {aplicacao.lower()}. "
-    texto += "\n\n"
+        conteudo_c12 += f"{virada} "
+    aprendeu12 = get_safe('c12_aprendeu')
+    if aprendeu12:
+        conteudo_c12 += f"Isso {pronome_objeto} ensinou que {aprendeu12}. "
+    aplicacao = get_safe('c12_aplicacao')
+    if aplicacao:
+        conteudo_c12 += f"Depois disso, {pronome_sujeito} passou a aplicar o que aprendia {aplicacao.lower()}. "
+
+    if conteudo_c12:
+        texto += "## 🔄 CAPÍTULO 12: O DIA QUE TUDO MUDOU\n\n" + conteudo_c12 + "\n\n"
 
     # Capítulo 13 – Legado
-    texto += "## 🌳 CAPÍTULO 13: O LEGADO QUE QUERO DEIXAR\n\n"
+    conteudo_c13 = ""
     procrastina = get_safe('c13_procrastina')
     if procrastina == "Proativo(a)":
-        texto += f"{nome} se considerava mais proativo(a) do que procrastinador(a). "
+        conteudo_c13 += f"{nome} se considerava mais proativo(a) do que procrastinador(a). "
     elif procrastina == "Procrastinador(a)":
-        texto += f"{nome} admitia ser mais procrastinador(a), mas estava melhorando. "
+        conteudo_c13 += f"{nome} admitia ser mais procrastinador(a), mas estava melhorando. "
     tempo = get_safe('c13_tempo')
     if tempo:
-        texto += f"O que costumava roubar seu tempo era {tempo}. "
+        conteudo_c13 += f"O que costumava roubar seu tempo era {tempo}. "
     mudanca13 = get_safe('c13_mudanca')
     if mudanca13:
-        texto += f"Para deixar um legado melhor, sentia que precisava mudar {mudanca13}. "
-    texto += "\n\n"
+        conteudo_c13 += f"Para deixar um legado melhor, sentia que precisava mudar {mudanca13}. "
 
-    # Capítulo 14 – Hobby (já foi tratado antes, mas pode-se adicionar mais)
+    if conteudo_c13:
+        texto += "## 🌳 CAPÍTULO 13: O LEGADO QUE QUERO DEIXAR\n\n" + conteudo_c13 + "\n\n"
+
+    # Capítulo 14 – Hobby
+    conteudo_c14 = ""
     hobby = get_safe('c14_hobby')
     if hobby:
-        texto += f"## 🎨 CAPÍTULO 14: O PASSATEMPO PREFERIDO\n\n"
-        texto += f"{nome} adorava {hobby}. "
-        origem14 = get_safe('c14_origem')
-        if origem14:
-            texto += f"Essa paixão começou {origem14}. "
-        paz14 = get_safe('c14_paz')
-        if paz14:
-            texto += f"Em um momento difícil, isso {pronome_objeto} trouxe paz: {paz14}. "
-        frase14 = get_safe('c14_frase_capa')
-        if frase14:
-            texto += f"Se fosse uma frase de capa, seria: \"{frase14}\". "
-    texto += "\n\n"
+        conteudo_c14 += f"{nome} adorava {hobby}. "
+    origem14 = get_safe('c14_origem')
+    if origem14:
+        conteudo_c14 += f"Essa paixão começou {origem14}. "
+    paz14 = get_safe('c14_paz')
+    if paz14:
+        conteudo_c14 += f"Em um momento difícil, isso {pronome_objeto} trouxe paz: {paz14}. "
+    frase14 = get_safe('c14_frase_capa')
+    if frase14:
+        conteudo_c14 += f"Se fosse uma frase de capa, seria: \"{frase14}\". "
+
+    if conteudo_c14:
+        texto += "## 🎨 CAPÍTULO 14: O PASSATEMPO PREFERIDO\n\n" + conteudo_c14 + "\n\n"
 
     # Capítulo 15 – Papéis sociais
+    conteudo_c15 = ""
     papeis = get_safe('c15_escolhidos', [])
     if isinstance(papeis, list) and papeis:
-        texto += f"## 👨‍👩‍👧 CAPÍTULO 15: OS PAPÉIS QUE EXERÇO\n\n"
-        texto += f"{nome} exercia os papéis de {', '.join(papeis)}. "
-        reflexao15 = get_safe('c15_reflexao')
-        if reflexao15:
-            texto += f"Esses papéis influenciavam quem {pronome_sujeito} era porque {reflexao15}. "
-    texto += "\n\n"
+        conteudo_c15 += f"{nome} exercia os papéis de {', '.join(papeis)}. "
+    reflexao15 = get_safe('c15_reflexao')
+    if reflexao15:
+        conteudo_c15 += f"Esses papéis influenciavam quem {pronome_sujeito} era porque {reflexao15}. "
+
+    if conteudo_c15:
+        texto += "## 👨‍👩‍👧 CAPÍTULO 15: OS PAPÉIS QUE EXERÇO\n\n" + conteudo_c15 + "\n\n"
 
     # Capítulo 16 – Virtudes
+    conteudo_c16 = ""
     virtudes = get_safe('c16_virtudes', [])
     if isinstance(virtudes, list) and virtudes:
-        texto += f"## 💎 CAPÍTULO 16: VIRTUDES QUE BRILHAM\n\n"
-        texto += f"{nome} reconhecia em si virtudes como {', '.join(virtudes)}. "
-        exemplo16 = get_safe('c16_exemplo')
-        if exemplo16:
-            texto += f"Um exemplo de quando uma virtude fez diferença: {exemplo16}. "
-    texto += "\n\n"
+        conteudo_c16 += f"{nome} reconhecia em si virtudes como {', '.join(virtudes)}. "
+    exemplo16 = get_safe('c16_exemplo')
+    if exemplo16:
+        conteudo_c16 += f"Um exemplo de quando uma virtude fez diferença: {exemplo16}. "
+
+    if conteudo_c16:
+        texto += "## 💎 CAPÍTULO 16: VIRTUDES QUE BRILHAM\n\n" + conteudo_c16 + "\n\n"
 
     # Capítulo 17 – Galardão
+    conteudo_c17 = ""
     motivo17 = get_safe('c17_motivo')
     if motivo17:
-        texto += f"## 🌟 CAPÍTULO 17: O QUE ME MOVE\n\n"
-        texto += f"O que mais motivava {nome} na vida era {motivo17.lower()}. "
-        reflexao17 = get_safe('c17_reflexao')
-        if reflexao17:
-            texto += f"Isso influenciava suas decisões porque {reflexao17}. "
-    texto += "\n\n"
+        conteudo_c17 += f"O que mais motivava {nome} na vida era {motivo17.lower()}. "
+    reflexao17 = get_safe('c17_reflexao')
+    if reflexao17:
+        conteudo_c17 += f"Isso influenciava suas decisões porque {reflexao17}. "
+
+    if conteudo_c17:
+        texto += "## 🌟 CAPÍTULO 17: O QUE ME MOVE\n\n" + conteudo_c17 + "\n\n"
 
     # Capítulo 18 – Terceirizar
+    conteudo_c18 = ""
     delega = get_safe('c18_delega')
     if delega:
-        texto += f"## 🤝 CAPÍTULO 18: APRENDENDO A DELEGAR\n\n"
-        texto += f"{nome} se sentia {delega.lower()} ao delegar tarefas. "
-        dificuldade18 = get_safe('c18_dificuldade')
-        if dificuldade18:
-            texto += f"Sua maior dificuldade era {dificuldade18}. "
-        aprendizado18 = get_safe('c18_aprendizado')
-        if aprendizado18:
-            texto += f"Já aprendeu que {aprendizado18}. "
-    texto += "\n\n"
+        conteudo_c18 += f"{nome} se sentia {delega.lower()} ao delegar tarefas. "
+    dificuldade18 = get_safe('c18_dificuldade')
+    if dificuldade18:
+        conteudo_c18 += f"Sua maior dificuldade era {dificuldade18}. "
+    aprendizado18 = get_safe('c18_aprendizado')
+    if aprendizado18:
+        conteudo_c18 += f"Já aprendeu que {aprendizado18}. "
 
-    # Capítulo 19 – Fases da vida (já tratamos antes, mas vamos refinar)
+    if conteudo_c18:
+        texto += "## 🤝 CAPÍTULO 18: APRENDENDO A DELEGAR\n\n" + conteudo_c18 + "\n\n"
+
+    # Capítulo 19 – Fases da vida
+    conteudo_c19 = ""
     infancia = get_safe('c19_infancia')
     adolescencia = get_safe('c19_adolescencia')
     adulta = get_safe('c19_adulta')
-    if infancia or adolescencia or adulta:
-        texto += f"## 🕰️ CAPÍTULO 19: AS FASES DA VIDA\n\n"
-        if infancia:
-            texto += f"Na infância, {infancia} "
-        if adolescencia:
-            texto += f"Na adolescência, {adolescencia} "
-        if adulta:
-            texto += f"Na vida adulta, {adulta} "
-        aprendizado_fases = get_safe('c19_aprendizado')
-        if aprendizado_fases:
-            texto += f"Cada fase trouxe o aprendizado: {aprendizado_fases}. "
-    texto += "\n\n"
+    if infancia:
+        conteudo_c19 += f"Na infância, {infancia}. "
+    if adolescencia:
+        conteudo_c19 += f"Na adolescência, {adolescencia}. "
+    if adulta:
+        conteudo_c19 += f"Na vida adulta, {adulta}. "
+    aprendizado_fases = get_safe('c19_aprendizado')
+    if aprendizado_fases:
+        conteudo_c19 += f"Cada fase trouxe o aprendizado: {aprendizado_fases}. "
 
-    # Capítulo 20 – Pequenos hábitos (já tratamos antes, mas vamos refinar)
+    if conteudo_c19:
+        texto += "## 🕰️ CAPÍTULO 19: AS FASES DA VIDA\n\n" + conteudo_c19 + "\n\n"
+
+    # Capítulo 20 – Pequenos hábitos
+    conteudo_c20 = ""
     habito20 = get_safe('c20_habito')
+    if habito20:
+        conteudo_c20 += f"{nome} {habito20.lower()} conseguia manter um hábito por 21 dias. "
     exemplo20 = get_safe('c20_exemplo')
+    if exemplo20:
+        conteudo_c20 += f"Um pequeno hábito que trouxe grande mudança foi: {exemplo20}. "
     dificuldade20 = get_safe('c20_dificuldade')
-    if habito20 or exemplo20 or dificuldade20:
-        texto += f"## 🌱 CAPÍTULO 20: O PODER DOS PEQUENOS HÁBITOS\n\n"
-        if habito20:
-            texto += f"{nome} {habito20.lower()} conseguia manter um hábito por 21 dias. "
-        if exemplo20:
-            texto += f"Um pequeno hábito que trouxe grande mudança foi: {exemplo20}. "
-        if dificuldade20:
-            texto += f"Sua maior dificuldade para manter a constância era {dificuldade20}. "
-    texto += "\n\n"
+    if dificuldade20:
+        conteudo_c20 += f"Sua maior dificuldade para manter a constância era {dificuldade20}. "
 
-    # Capítulo 21 – Sonhos (já tratamos antes, mas vamos refinar)
+    if conteudo_c20:
+        texto += "## 🌱 CAPÍTULO 20: O PODER DOS PEQUENOS HÁBITOS\n\n" + conteudo_c20 + "\n\n"
+
+    # Capítulo 21 – Sonhos
+    conteudo_c21 = ""
     sonho = get_safe('c21_sonho')
     plano = get_safe('c21_plano')
     foco = get_safe('c21_foco')
     aprende = get_safe('c21_aprende')
-    if sonho or plano:
-        texto += f"## 🌠 CAPÍTULO 21: SONHOS PARA O FUTURO\n\n"
-        if foco:
-            texto += f"{nome} vivia mais focado no {foco.lower()}. "
-        if aprende:
-            texto += f"Aprendia mais com {aprende.lower()}. "
-        if sonho:
-            texto += f"Seu principal sonho era {sonho}. "
-        if plano:
-            texto += f"Para realizá-lo, planejava {plano}. "
-    texto += "\n\n"
+    if foco:
+        conteudo_c21 += f"{nome} vivia mais focado no {foco.lower()}. "
+    if aprende:
+        conteudo_c21 += f"Aprendia mais com {aprende.lower()}. "
+    if sonho:
+        conteudo_c21 += f"Seu principal sonho era {sonho}. "
+    if plano:
+        conteudo_c21 += f"Para realizá-lo, planejava {plano}. "
+
+    if conteudo_c21:
+        texto += "## 🌠 CAPÍTULO 21: SONHOS PARA O FUTURO\n\n" + conteudo_c21 + "\n\n"
 
     # Capítulo 22 – Estrutura do livro
+    conteudo_c22 = ""
     elementos = get_safe('c22_elementos', [])
     if isinstance(elementos, list) and elementos:
-        texto += f"## 📖 CAPÍTULO 22: COMO SERÁ ESTE LIVRO\n\n"
-        texto += f"{nome} queria incluir no livro: {', '.join(elementos)}. "
-        reflexao22 = get_safe('c22_reflexao')
-        if reflexao22:
-            texto += f"Isso era importante porque {reflexao22}. "
-    texto += "\n\n"
+        conteudo_c22 += f"{nome} queria incluir no livro: {', '.join(elementos)}. "
+    reflexao22 = get_safe('c22_reflexao')
+    if reflexao22:
+        conteudo_c22 += f"Isso era importante porque {reflexao22}. "
+
+    if conteudo_c22:
+        texto += "## 📖 CAPÍTULO 22: COMO SERÁ ESTE LIVRO\n\n" + conteudo_c22 + "\n\n"
 
     # Capítulo 23 – Distribuição
+    conteudo_c23 = ""
     formato = get_safe('c23_formato', [])
     publicacao = get_safe('c23_publicacao')
-    if formato:
-        texto += f"## 📦 CAPÍTULO 23: PUBLICANDO A HISTÓRIA\n\n"
-        texto += f"Imaginava sua biografia em {', '.join(formato)}. "
-        if publicacao:
-            texto += f"Pretendia publicar de forma {publicacao.lower()}. "
-        reflexao23 = get_safe('c23_reflexao')
-        if reflexao23:
-            texto += f"Sobre a publicação, {nome} dizia: {reflexao23}. "
-    texto += "\n\n"
+    if isinstance(formato, list) and formato:
+        conteudo_c23 += f"Imaginava sua biografia em {', '.join(formato)}. "
+    if publicacao:
+        conteudo_c23 += f"Pretendia publicar de forma {publicacao.lower()}. "
+    reflexao23 = get_safe('c23_reflexao')
+    if reflexao23:
+        conteudo_c23 += f"Sobre a publicação, {nome} dizia: {reflexao23}. "
+
+    if conteudo_c23:
+        texto += "## 📦 CAPÍTULO 23: PUBLICANDO A HISTÓRIA\n\n" + conteudo_c23 + "\n\n"
 
     # Capítulo 24 – Experiência visual
+    conteudo_c24 = ""
     mapas = get_safe('c24_mapas')
     estetica = get_safe('c24_estetica')
     apoios = get_safe('c24_apoios', [])
-    if mapas or estetica or apoios:
-        texto += f"## 🎨 CAPÍTULO 24: A EXPERIÊNCIA VISUAL\n\n"
-        if mapas == "Sim":
-            texto += f"{nome} queria incluir mapas mentais. "
-        if estetica:
-            texto += f"Imaginava a estética assim: {estetica}. "
-        if isinstance(apoios, list) and apoios:
-            texto += f"Recursos de apoio: {', '.join(apoios)}. "
-    texto += "\n\n"
+    if mapas == "Sim":
+        conteudo_c24 += f"{nome} queria incluir mapas mentais. "
+    if estetica:
+        conteudo_c24 += f"Imaginava a estética assim: {estetica}. "
+    if isinstance(apoios, list) and apoios:
+        conteudo_c24 += f"Recursos de apoio: {', '.join(apoios)}. "
+
+    if conteudo_c24:
+        texto += "## 🎨 CAPÍTULO 24: A EXPERIÊNCIA VISUAL\n\n" + conteudo_c24 + "\n\n"
 
     # Capítulo 25 – Vendas
+    conteudo_c25 = ""
     vendas = get_safe('c25_vendas', [])
     if isinstance(vendas, list) and vendas:
-        texto += f"## 💰 CAPÍTULO 25: COMO ALCANÇAR AS PESSOAS\n\n"
-        texto += f"{nome} pretendia estruturar vendas por {', '.join(vendas)}. "
-        reflexao25 = get_safe('c25_reflexao')
-        if reflexao25:
-            texto += f"Acreditava que o livro alcançaria pessoas porque {reflexao25}. "
-    texto += "\n\n"
+        conteudo_c25 += f"{nome} pretendia estruturar vendas por {', '.join(vendas)}. "
+    reflexao25 = get_safe('c25_reflexao')
+    if reflexao25:
+        conteudo_c25 += f"Acreditava que o livro alcançaria pessoas porque {reflexao25}. "
+
+    if conteudo_c25:
+        texto += "## 💰 CAPÍTULO 25: COMO ALCANÇAR AS PESSOAS\n\n" + conteudo_c25 + "\n\n"
 
     # Capítulo 26 – Legado final
+    conteudo_c26 = ""
     sinestesia = get_safe('c26_sinestesia', [])
     legado = get_safe('c26_legado')
-    if sinestesia or legado:
-        texto += f"## 💌 CAPÍTULO 26: O LEGADO FINAL\n\n"
-        if isinstance(sinestesia, list) and sinestesia:
-            texto += f"{nome} queria que o livro despertasse os sentidos: {', '.join(sinestesia)}. "
-        if legado:
-            texto += f"Sua mensagem final de legado era: {legado}. "
-    texto += "\n\n"
+    if isinstance(sinestesia, list) and sinestesia:
+        conteudo_c26 += f"{nome} queria que o livro despertasse os sentidos: {', '.join(sinestesia)}. "
+    if legado:
+        conteudo_c26 += f"Sua mensagem final de legado era: {legado}. "
 
-    # Conclusão encantada
+    if conteudo_c26:
+        texto += "## 💌 CAPÍTULO 26: O LEGADO FINAL\n\n" + conteudo_c26 + "\n\n"
+
+    # Conclusão
     texto += "---\n"
     texto += "## 🌈 E VIVERAM FELIZES PARA SEMPRE...\n\n"
     texto += f"Essa é a história de {nome}, {artigo} {personagem} que continua escrevendo novos capítulos todos os dias, com muita coragem, amor e esperança. E quem sabe um dia você também não escreve a sua? Afinal, cada um de nós tem uma história única e especial, cheia de aventuras, aprendizados e magia.\n\n"
     texto += f"*Fim – com todo carinho do mundo para {nome}*"
     return texto
-
-
 # ==================================================
 # BARRA LATERAL COM SELEÇÃO DE ESTILO
 # ==================================================
@@ -1316,6 +1406,7 @@ with tab_d:
         )
     else:
         st.info("Clique no botão na barra lateral para gerar sua biografia.")
+
 
 
 
