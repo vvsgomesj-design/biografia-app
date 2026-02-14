@@ -1,43 +1,29 @@
 import streamlit as st
 from datetime import datetime
 
-# --- 1. CONFIGURAÇÃO E INICIALIZAÇÃO SEGURA ---
-st.set_page_config(page_title="Gerador de Biografias Pro", layout="wide")
+# Configuração da página
+st.set_page_config(page_title="Biografia App", layout="wide")
+st.title("📘 Minha Biografia")
 
-# Inicializa o estado para evitar o erro AttributeError de chave inexistente
+# Inicializa o estado para o livro gerado
 if 'livro_gerado' not in st.session_state:
     st.session_state.livro_gerado = ""
 
-# --- 2. LISTA INTEGRAL DAS 41 VIRTUDES (Cap. 16) ---
-VIRTUDES_41 = [
-    "Amor", "Alegria", "Auto-domínio", "Bondade", "Benignidade", "Benevolência", 
-    "Compaixão", "Coragem", "Cortesias", "Castidade", "Discernimento", "Disciplina", 
-    "Diligência", "Esperança", "Entusiasmo", "Fé", "Fidelidade", "Fortaleza", 
-    "Generosidade", "Gratidão", "Gentileza", "Honra", "Humildade", "Honestidade", 
-    "Justiça", "Lealdade", "Longanimidade", "Moderação", "Mansidão", "Obediência", 
-    "Ordem", "Paciência", "Perdão", "Prudência", "Piedade", "Respeito", 
-    "Responsabilidade", "Sabedoria", "Temperança", "Tolerância", "Zelo"
-]
+# Criação das abas
+tab_a, tab_b, tab_c, tab_d = st.tabs([
+    "Bloco A: Fundamentos",
+    "Bloco B: Legado e Relações",
+    "Bloco C: Estrutura",
+    "📖 Livro Gerado"
+])
 
-# --- 3. FUNÇÃO PARA COLETAR RESPOSTAS COM SEGURANÇA ---
-def get_v(key, default="..."):
-    valor = st.session_state.get(key)
-    if valor:
-        if isinstance(valor, list):
-            return ", ".join(valor) if len(valor) > 0 else default
-        return str(valor)
-    return default
-
-st.title("📘 Sistema de Biografias Trampolim")
-
-# --- 4. ENTRADAS DE DADOS (BASEADO NO SEU ARQUIVO FUNCIONANDO) ---
-tab_a, tab_b, tab_c = st.tabs(["🏛️ Bloco A: Fundamentos", "🎨 Bloco B: Jornada", "🚀 Bloco C: Estrutura"])
-
-# --- BLOCO 1: CAPÍTULOS 1 A 5 ---
+# ==================================================
+# BLOCO A – CAPÍTULOS 1 A 10
+# ==================================================
 with tab_a:
     st.header("Bloco A: Fundamentos, Identidade e Organização")
 
-    nome_autor = st.text_input("Nome Completo:", "Autor Desconhecido")
+    nome_autor = st.text_input("Nome Completo:", "Autor Desconhecido", key="nome_autor")
 
     # ==================================================
     # CAPÍTULO 1 – NEUROPLASTICIDADE E MINDSET
@@ -45,12 +31,14 @@ with tab_a:
     with st.expander("Cap. 1 – Neuroplasticidade e Mudança de Mindset"):
         c1_mudanca = st.radio(
             "Você acredita que é possível mudar padrões de pensamento?",
-            ["Sim", "Não", "Não tenho certeza"]
+            ["Sim", "Não", "Não tenho certeza"],
+            key="c1_mudanca"
         )
 
         c1_aprendizado = st.selectbox(
             "Com que frequência você busca aprender algo novo?",
-            ["Diariamente", "Semanalmente", "Raramente", "Nunca"]
+            ["Diariamente", "Semanalmente", "Raramente", "Nunca"],
+            key="c1_aprendizado"
         )
 
         c1_reacao = st.radio(
@@ -59,21 +47,19 @@ with tab_a:
                 "Desistir facilmente",
                 "Persistir e buscar novas estratégias",
                 "Esperar que alguém resolva"
-            ]
+            ],
+            key="c1_reacao"
         )
 
         c1_habitos = st.radio(
             "Você já percebeu mudanças positivas após criar novos hábitos?",
-            ["Sim", "Não", "Ainda estou tentando"]
+            ["Sim", "Não", "Ainda estou tentando"],
+            key="c1_habitos"
         )
 
-        c1_motiva = st.text_input(
-            "Em uma palavra, o que mais te motiva a mudar?"
-        )
+        c1_motiva = st.text_input("Em uma palavra, o que mais te motiva a mudar?", key="c1_motiva")
 
-        c1_renovar = st.text_area(
-            "O que significa para você 'renovar a mente'?"
-        )
+        c1_renovar = st.text_area("O que significa para você 'renovar a mente'?", key="c1_renovar")
 
     # ==================================================
     # CAPÍTULO 2 – IDENTIDADE EM CRISTO (HERDEIRO)
@@ -85,7 +71,8 @@ with tab_a:
                 "Sinto-me herdeiro(a) de Deus",
                 "Às vezes me esqueço",
                 "Ainda não compreendo"
-            ]
+            ],
+            key="c2_heranca"
         )
 
         c2_desafios = st.radio(
@@ -94,7 +81,8 @@ with tab_a:
                 "Como oportunidade de crescimento",
                 "Com medo ou insegurança",
                 "Com dificuldade de enxergar propósito"
-            ]
+            ],
+            key="c2_desafios"
         )
 
         c2_promessas = st.radio(
@@ -103,16 +91,19 @@ with tab_a:
                 "Conheço e procuro viver",
                 "Conheço, mas não aplico sempre",
                 "Não costumo refletir sobre isso"
-            ]
+            ],
+            key="c2_promessas"
         )
 
         c2_eternidade = st.radio(
             "Você pensa no seu futuro eterno?",
-            ["Sim, com convicção", "Às vezes", "Raramente"]
+            ["Sim, com convicção", "Às vezes", "Raramente"],
+            key="c2_eternidade"
         )
 
         c2_reflexao = st.text_area(
-            "De que forma seus desafios revelam sua identidade e herança?"
+            "De que forma seus desafios revelam sua identidade e herança?",
+            key="c2_reflexao"
         )
 
     # ==================================================
@@ -127,7 +118,8 @@ with tab_a:
                 "Alimentação equilibrada",
                 "Sono regulado",
                 "Disciplina"
-            ]
+            ],
+            key="c3_corpo"
         )
 
         c3_espirito = st.multiselect(
@@ -138,11 +130,13 @@ with tab_a:
                 "Leitura espiritual",
                 "Intuição",
                 "Paz com propósito"
-            ]
+            ],
+            key="c3_espirito"
         )
 
         c3_equilibrio = st.text_area(
-            "Como você percebe o equilíbrio (ou desequilíbrio) entre corpo e espírito?"
+            "Como você percebe o equilíbrio (ou desequilíbrio) entre corpo e espírito?",
+            key="c3_equilibrio"
         )
 
     # ==================================================
@@ -150,19 +144,17 @@ with tab_a:
     # ==================================================
     with st.expander("Cap. 4 – Autoconhecimento e Posição na Vida"):
         c4_autentico = st.text_area(
-            "Descreva um momento em que você se sentiu verdadeiramente autêntico(a):"
+            "Descreva um momento em que você se sentiu verdadeiramente autêntico(a):",
+            key="c4_autentico"
         )
 
-        c4_talentos = st.text_input(
-            "Quais são seus três maiores talentos?"
-        )
+        c4_talentos = st.text_input("Quais são seus três maiores talentos?", key="c4_talentos")
 
-        c4_desafio = st.text_area(
-            "Relate um desafio significativo que você superou:"
-        )
+        c4_desafio = st.text_area("Relate um desafio significativo que você superou:", key="c4_desafio")
 
         c4_aprendizado = st.text_area(
-            "O que esse desafio te ensinou sobre você mesmo(a)?"
+            "O que esse desafio te ensinou sobre você mesmo(a)?",
+            key="c4_aprendizado"
         )
 
     # ==================================================
@@ -171,53 +163,64 @@ with tab_a:
     with st.expander("Cap. 5 – Alcance da Sua História"):
         c5_local = st.radio(
             "Você acredita que sua história impacta pessoas ao seu redor?",
-            ["Sim", "Não"]
+            ["Sim", "Não"],
+            key="c5_local"
         )
 
         c5_regional = st.radio(
             "Você acredita que sua trajetória pode inspirar pessoas fora do seu círculo?",
-            ["Sim", "Não"]
+            ["Sim", "Não"],
+            key="c5_regional"
         )
 
         c5_internacional = st.radio(
             "Você acredita que sua história pode inspirar diferentes culturas ou países?",
-            ["Sim", "Não"]
+            ["Sim", "Não"],
+            key="c5_internacional"
         )
 
         c5_reflexao = st.text_area(
-            "Por que você acredita que sua história merece ser contada?"
+            "Por que você acredita que sua história merece ser contada?",
+            key="c5_reflexao"
         )
+
     # ==================================================
     # CAPÍTULO 6 – POSIÇÃO CONFORME A BÍBLIA
     # ==================================================
     with st.expander("Cap. 6 – Posição Conforme a Bíblia"):
         c6_crise = st.radio(
             "Em momentos de crise, você costuma buscar aprendizado?",
-            ["Sim", "Não", "Às vezes"]
+            ["Sim", "Não", "Às vezes"],
+            key="c6_crise"
         )
 
         c6_carater = st.radio(
             "Você acredita que suas decisões revelam seu caráter?",
-            ["Sim", "Não"]
+            ["Sim", "Não"],
+            key="c6_carater"
         )
 
         c6_emocoes = st.radio(
             "Você presta atenção às suas emoções antes de agir?",
-            ["Sim", "Não", "Raramente"]
+            ["Sim", "Não", "Raramente"],
+            key="c6_emocoes"
         )
 
         c6_arrependimento = st.radio(
             "Você pratica arrependimento como mudança real de atitude?",
-            ["Sim", "Não", "Ainda estou aprendendo"]
+            ["Sim", "Não", "Ainda estou aprendendo"],
+            key="c6_arrependimento"
         )
 
         c6_fidelidade = st.radio(
             "Você se mantém fiel aos seus compromissos mesmo quando ninguém está olhando?",
-            ["Sim", "Não"]
+            ["Sim", "Não"],
+            key="c6_fidelidade"
         )
 
         c6_reflexao = st.text_area(
-            "Como os princípios bíblicos influenciam suas decisões diárias?"
+            "Como os princípios bíblicos influenciam suas decisões diárias?",
+            key="c6_reflexao"
         )
 
     # ==================================================
@@ -226,25 +229,30 @@ with tab_a:
     with st.expander("Cap. 7 – Situação Atual e Impulso para o Trampolim"):
         c7_proativo = st.radio(
             "Você se considera uma pessoa proativa?",
-            ["Sim", "Não"]
+            ["Sim", "Não"],
+            key="c7_proativo"
         )
 
         c7_estagnacao = st.radio(
             "Você sente que está estagnado(a) em alguma área da vida?",
-            ["Sim", "Não"]
+            ["Sim", "Não"],
+            key="c7_estagnacao"
         )
 
         c7_area = st.text_input(
-            "Se sim, em qual área você sente maior estagnação?"
+            "Se sim, em qual área você sente maior estagnação?",
+            key="c7_area"
         )
 
         c7_decisao = st.radio(
             "Você sente que chegou o momento de mudar?",
-            ["Sim", "Não", "Ainda estou refletindo"]
+            ["Sim", "Não", "Ainda estou refletindo"],
+            key="c7_decisao"
         )
 
         c7_reflexao = st.text_area(
-            "O que hoje funciona como trampolim para o seu próximo nível?"
+            "O que hoje funciona como trampolim para o seu próximo nível?",
+            key="c7_reflexao"
         )
 
     # ==================================================
@@ -253,7 +261,8 @@ with tab_a:
     with st.expander("Cap. 8 – Comemoração e Reconhecimento de Conquistas"):
         c8_celebra = st.selectbox(
             "Você costuma celebrar pequenas vitórias?",
-            ["Sempre", "Às vezes", "Raramente", "Nunca"]
+            ["Sempre", "Às vezes", "Raramente", "Nunca"],
+            key="c8_celebra"
         )
 
         c8_motivo = st.radio(
@@ -263,16 +272,13 @@ with tab_a:
                 "Evita frustração",
                 "Nunca parei para pensar",
                 "Tenho dificuldade em comemorar"
-            ]
+            ],
+            key="c8_motivo"
         )
 
-        c8_memoria = st.text_area(
-            "Descreva uma conquista que marcou sua vida:"
-        )
+        c8_memoria = st.text_area("Descreva uma conquista que marcou sua vida:", key="c8_memoria")
 
-        c8_aprendizado = st.text_area(
-            "O que essa conquista te ensinou?"
-        )
+        c8_aprendizado = st.text_area("O que essa conquista te ensinou?", key="c8_aprendizado")
 
     # ==================================================
     # CAPÍTULO 9 – PRA QUEM, POR QUÊ E COMO
@@ -280,13 +286,8 @@ with tab_a:
     with st.expander("Cap. 9 – Público, Propósito e Forma"):
         c9_publico = st.multiselect(
             "Para quem esta biografia é direcionada?",
-            [
-                "Família",
-                "Amigos",
-                "Estudantes",
-                "Líderes",
-                "Público em geral"
-            ]
+            ["Família", "Amigos", "Estudantes", "Líderes", "Público em geral"],
+            key="c9_publico"
         )
 
         c9_por_que = st.multiselect(
@@ -297,22 +298,19 @@ with tab_a:
                 "Ensinar aprendizados",
                 "Curar feridas",
                 "Deixar legado"
-            ]
+            ],
+            key="c9_por_que"
         )
 
         c9_como = st.multiselect(
             "Como você gostaria que sua história fosse sentida pelo leitor?",
-            [
-                "Acolhedora",
-                "Inspiradora",
-                "Realista",
-                "Transformadora",
-                "Leve"
-            ]
+            ["Acolhedora", "Inspiradora", "Realista", "Transformadora", "Leve"],
+            key="c9_como"
         )
 
         c9_reflexao = st.text_area(
-            "Qual impacto você espera causar em quem ler sua biografia?"
+            "Qual impacto você espera causar em quem ler sua biografia?",
+            key="c9_reflexao"
         )
 
     # ==================================================
@@ -320,24 +318,127 @@ with tab_a:
     # ==================================================
     with st.expander("Cap. 10 – Análise Curricular e Experiências"):
         c10_formacao = st.text_area(
-            "Formações acadêmicas, cursos ou treinamentos relevantes:"
+            "Formações acadêmicas, cursos ou treinamentos relevantes:",
+            key="c10_formacao"
         )
 
         c10_experiencias = st.text_area(
-            "Experiências profissionais ou ministeriais marcantes:"
+            "Experiências profissionais ou ministeriais marcantes:",
+            key="c10_experiencias"
         )
 
         c10_competencias = st.text_area(
-            "Quais competências você desenvolveu ao longo da vida?"
+            "Quais competências você desenvolveu ao longo da vida?",
+            key="c10_competencias"
         )
 
         c10_reflexao = st.text_area(
-            "Como sua trajetória prepara você para o futuro?"
+            "Como sua trajetória prepara você para o futuro?",
+            key="c10_reflexao"
         )
-# =========================
-# CONTINUA NA TAB_B
-# =========================
+
+# ==================================================
+# BLOCO B – CAPÍTULOS 11 A 20
+# ==================================================
 with tab_b:
+    st.header("Bloco B: Seleção, Legado, Talento e Relações")
+
+    # ==================================================
+    # CAPÍTULO 11 – TÉCNICAS DE SELEÇÃO
+    # ==================================================
+    with st.expander("Cap. 11 – Técnicas de Seleção e Critérios"):
+        c11_etica = st.radio(
+            "Para você, ética é determinante em qualquer escolha importante?",
+            ["Sim", "Não"],
+            key="c11_etica"
+        )
+
+        c11_contratacoes = st.multiselect(
+            "Você considera contratar apoio para este projeto?",
+            ["Editora", "Ghost Writer", "Designer", "Gráfica", "Nenhum"],
+            key="c11_contratacoes"
+        )
+
+        c11_criterios = st.text_area(
+            "Quais critérios você considera essenciais ao selecionar pessoas ou projetos?",
+            key="c11_criterios"
+        )
+
+    # ==================================================
+    # CAPÍTULO 12 – TÉCNICAS DE TREINAMENTO
+    # ==================================================
+    with st.expander("Cap. 12 – Treinamento, Aprendizado e Virada"):
+        c12_virada = st.text_area("Descreva um momento decisivo de virada na sua vida:", key="c12_virada")
+
+        c12_aprendeu = st.text_area("O que esse momento te ensinou?", key="c12_aprendeu")
+
+        c12_aplicacao = st.radio(
+            "Você costuma aplicar rapidamente o que aprende?",
+            ["Sim", "Não", "Depende da situação"],
+            key="c12_aplicacao"
+        )
+
+    # ==================================================
+    # CAPÍTULO 13 – LEGADO
+    # ==================================================
+    with st.expander("Cap. 13 – Legado e Postura Pessoal"):
+        c13_procrastina = st.radio(
+            "Você se considera mais proativo(a) ou procrastinador(a)?",
+            ["Proativo(a)", "Procrastinador(a)"],
+            key="c13_procrastina"
+        )
+
+        c13_tempo = st.text_area("O que costuma roubar seu tempo e energia?", key="c13_tempo")
+
+        c13_mudanca = st.text_area(
+            "O que você sente que precisa mudar para deixar um legado melhor?",
+            key="c13_mudanca"
+        )
+
+    # ==================================================
+    # CAPÍTULO 14 – TALENTO E HOBBY
+    # ==================================================
+    with st.expander("Cap. 14 – Talento, Hobby e Fonte de Paz"):
+        c14_hobby = st.text_input("Qual talento ou hobby faz parte da sua história?", key="c14_hobby")
+
+        c14_origem = st.text_area(
+            "Como esse talento ou hobby surgiu e quem te influenciou?",
+            key="c14_origem"
+        )
+
+        c14_paz = st.text_area(
+            "Relate um momento em que esse hobby trouxe paz, cura ou alegria:",
+            key="c14_paz"
+        )
+
+        c14_frase_capa = st.text_input(
+            "Crie uma frase curta sobre esse talento para a capa do livro:",
+            key="c14_frase_capa"
+        )
+
+    # ==================================================
+    # CAPÍTULO 15 – POSIÇÃO SOCIAL E RELACIONAL
+    # ==================================================
+    with st.expander("Cap. 15 – Posição Social, Família e Relações"):
+        papeis_list = [
+            "Mãe", "Pai", "Filha", "Filho", "Irmã", "Irmão",
+            "Avó", "Avô", "Neta", "Neto", "Tia", "Tio",
+            "Sobrinha", "Sobrinho", "Prima", "Primo",
+            "Madrinha", "Padrinho", "Esposa", "Marido",
+            "Companheira", "Companheiro", "Noiva", "Noivo",
+            "Sogra", "Sogro", "Nora", "Genro",
+            "Cunhada", "Cunhado", "Madrasta", "Padrasto",
+            "Enteada", "Enteado", "Amiga", "Amigo",
+            "Vizinha", "Vizinho", "Colega", "Parceira", "Parceiro"
+        ]
+
+        c15_escolhidos = st.multiselect(
+            "Quais papéis você exerce hoje em sua vida?",
+            papeis_list,
+            key="c15_escolhidos"
+        )
+
+        c15_reflexao = st.text_area("Como esses papéis influenciam quem você é?", key="c15_reflexao")
 
     # ==================================================
     # CAPÍTULO 16 – VIRTUDES
@@ -358,11 +459,13 @@ with tab_b:
 
         c16_virtudes = st.multiselect(
             "Quais virtudes você reconhece em si ou deseja desenvolver?",
-            virtudes_list
+            virtudes_list,
+            key="c16_virtudes"
         )
 
         c16_exemplo = st.text_area(
-            "Cite uma situação em que uma virtude fez diferença na sua vida:"
+            "Cite uma situação em que uma virtude fez diferença na sua vida:",
+            key="c16_exemplo"
         )
 
     # ==================================================
@@ -376,11 +479,13 @@ with tab_b:
                 "Ser reconhecido(a) pelas pessoas",
                 "Deixar um legado",
                 "Cumprir meu propósito"
-            ]
+            ],
+            key="c17_motivo"
         )
 
         c17_reflexao = st.text_area(
-            "Como essa motivação influencia suas decisões diárias?"
+            "Como essa motivação influencia suas decisões diárias?",
+            key="c17_reflexao"
         )
 
     # ==================================================
@@ -389,20 +494,18 @@ with tab_b:
     with st.expander("Cap. 18 – Terceirização e Confiança"):
         c18_delega = st.selectbox(
             "Como você se sente ao delegar tarefas?",
-            [
-                "Alívio",
-                "Insegurança",
-                "Medo de perder o controle",
-                "Entusiasmo"
-            ]
+            ["Alívio", "Insegurança", "Medo de perder o controle", "Entusiasmo"],
+            key="c18_delega"
         )
 
         c18_dificuldade = st.text_area(
-            "O que mais dificulta para você confiar tarefas a outras pessoas?"
+            "O que mais dificulta para você confiar tarefas a outras pessoas?",
+            key="c18_dificuldade"
         )
 
         c18_aprendizado = st.text_area(
-            "O que você já aprendeu ao delegar ou tentar fazer tudo sozinho(a)?"
+            "O que você já aprendeu ao delegar ou tentar fazer tudo sozinho(a)?",
+            key="c18_aprendizado"
         )
 
     # ==================================================
@@ -410,19 +513,17 @@ with tab_b:
     # ==================================================
     with st.expander("Cap. 19 – Fases da Vida"):
         c19_infancia = st.text_area(
-            "Quais brincadeiras ou atividades marcaram sua infância?"
+            "Quais brincadeiras ou atividades marcaram sua infância?",
+            key="c19_infancia"
         )
 
-        c19_adolescencia = st.text_area(
-            "O que mais marcou sua adolescência?"
-        )
+        c19_adolescencia = st.text_area("O que mais marcou sua adolescência?", key="c19_adolescencia")
 
-        c19_adulta = st.text_area(
-            "Qual foi (ou é) o auge da sua fase adulta?"
-        )
+        c19_adulta = st.text_area("Qual foi (ou é) o auge da sua fase adulta?", key="c19_adulta")
 
         c19_aprendizado = st.text_area(
-            "Que aprendizado cada fase da vida te trouxe?"
+            "Que aprendizado cada fase da vida te trouxe?",
+            key="c19_aprendizado"
         )
 
     # ==================================================
@@ -431,19 +532,42 @@ with tab_b:
     with st.expander("Cap. 20 – Pequenas Ações e Perseverança"):
         c20_habito = st.radio(
             "Você consegue manter um hábito por pelo menos 21 dias?",
-            ["Sim", "Tentando", "Não"]
+            ["Sim", "Tentando", "Não"],
+            key="c20_habito"
         )
 
-        c20_exemplo = st.text_area(
-            "Cite um pequeno hábito que já trouxe grande mudança:"
-        )
+        c20_exemplo = st.text_area("Cite um pequeno hábito que já trouxe grande mudança:", key="c20_exemplo")
 
-        c20_dificuldade = st.text_area(
-            "O que mais dificulta sua constância?"
-        )
+        c20_dificuldade = st.text_area("O que mais dificulta sua constância?", key="c20_dificuldade")
 
+# ==================================================
+# BLOCO C – CAPÍTULOS 21 A 26
+# ==================================================
 with tab_c:
     st.header("Bloco C: Estrutura do Livro, Vendas e Experiência")
+
+    # ==================================================
+    # CAPÍTULO 21 – PLANEJAMENTO E VISÃO DE FUTURO
+    # ==================================================
+    with st.expander("Cap. 21 – Planejamento, Tempo e Futuro"):
+        c21_foco = st.radio(
+            "Você tende a viver mais focado em:",
+            ["Passado", "Presente", "Futuro"],
+            key="c21_foco"
+        )
+
+        c21_aprende = st.radio(
+            "Você aprende mais com:",
+            ["Erros", "Acertos", "Observando outras pessoas"],
+            key="c21_aprende"
+        )
+
+        c21_sonho = st.text_area("Qual é o principal sonho ou objetivo para os próximos anos?", key="c21_sonho")
+
+        c21_plano = st.text_area(
+            "Que passos práticos você acredita que precisa dar a partir de agora?",
+            key="c21_plano"
+        )
 
     # ==================================================
     # CAPÍTULO 22 – FLUXOGRAMA EDITORIAL
@@ -465,12 +589,11 @@ with tab_c:
                 "Ficha catalográfica",
                 "QR Code com música",
                 "Agradecimentos finais"
-            ]
+            ],
+            key="c22_elementos"
         )
 
-        c22_reflexao = st.text_area(
-            "Por que esses elementos são importantes para você?"
-        )
+        c22_reflexao = st.text_area("Por que esses elementos são importantes para você?", key="c22_reflexao")
 
     # ==================================================
     # CAPÍTULO 23 – ORGANIZAÇÃO E DISTRIBUIÇÃO
@@ -485,35 +608,32 @@ with tab_c:
                 "Curso",
                 "Material terapêutico",
                 "Material ministerial"
-            ]
+            ],
+            key="c23_formato"
         )
 
         c23_publicacao = st.radio(
             "Como você pretende publicar?",
-            [
-                "Independente",
-                "Plataformas digitais",
-                "Editoras",
-                "Ainda não sei"
-            ]
+            ["Independente", "Plataformas digitais", "Editoras", "Ainda não sei"],
+            key="c23_publicacao"
         )
 
         c23_reflexao = st.text_area(
-            "O que mais te anima (ou preocupa) sobre a publicação?"
+            "O que mais te anima (ou preocupa) sobre a publicação?",
+            key="c23_reflexao"
         )
 
     # ==================================================
-    # CAPÍTULO 24 – EXPERIÊNCIA VISUAL E MAPAS
+    # CAPÍTULO 24 – EXPERIÊNCIA VISUAL E APOIOS
     # ==================================================
     with st.expander("Cap. 24 – Experiência Visual e Apoios"):
         c24_mapas = st.radio(
             "Você deseja incluir mapas mentais ou esquemas visuais no livro?",
-            ["Sim", "Não"]
+            ["Sim", "Não"],
+            key="c24_mapas"
         )
 
-        c24_estetica = st.text_area(
-            "Como você imagina a estética visual do livro?"
-        )
+        c24_estetica = st.text_area("Como você imagina a estética visual do livro?", key="c24_estetica")
 
         c24_apoios = st.multiselect(
             "Quais recursos visuais ou de apoio você gostaria de incluir?",
@@ -524,7 +644,8 @@ with tab_c:
                 "Checklists",
                 "Exercícios práticos",
                 "Espaço para anotações"
-            ]
+            ],
+            key="c24_apoios"
         )
 
     # ==================================================
@@ -540,11 +661,13 @@ with tab_c:
                 "Link na bio do Instagram",
                 "Conteúdo de divulgação",
                 "Renda passiva"
-            ]
+            ],
+            key="c25_vendas"
         )
 
         c25_reflexao = st.text_area(
-            "Como você imagina que esse livro pode alcançar pessoas?"
+            "Como você imagina que esse livro pode alcançar pessoas?",
+            key="c25_reflexao"
         )
 
     # ==================================================
@@ -560,64 +683,445 @@ with tab_c:
                 "Audição (playlist, áudio)",
                 "Paladar (brinde simbólico)",
                 "Experiência de entrega (caixa especial)"
-            ]
+            ],
+            key="c26_sinestesia"
         )
 
-        c26_legado = st.text_area(
-            "Qual mensagem final você deseja deixar como legado?"
-        )
+        c26_legado = st.text_area("Qual mensagem final você deseja deixar como legado?", key="c26_legado")
 
-# --- 5. MOTOR DE NARRATIVA COESA E ESTRUTURADA ---
-def gerar_narrativa(estilo, genero_inf=None):
-    nome = get_v('nome_autor').upper()
+# ==================================================
+# FUNÇÕES DE GERAÇÃO (VERSÃO ENRIQUECIDA)
+# ==================================================
+
+def get_safe(key, default=""):
+    valor = st.session_state.get(key, default)
+    if valor is None:
+        return default
+    if isinstance(default, list) and not isinstance(valor, list):
+        return default
+    if isinstance(default, str) and not isinstance(valor, str):
+        return default
+    return valor
+
+def gerar_biografia_hobby():
+    nome = get_safe('nome_autor', 'Autor Desconhecido')
+    data = datetime.now().strftime("%d/%m/%Y")
+
+    texto = f"""# OS PASSATEMPOS DE {nome.upper()}
+## Uma Jornada de Descoberta e Prazer
+*Gerado em {data}*
+
+---
+
+### INTRODUÇÃO
+
+Cada um de nós carrega dentro de si um universo particular de interesses, talentos e paixões. Para **{nome}**, os passatempos não são meras distrações; são verdadeiras fontes de vida, momentos em que a alma se reconecta consigo mesma e com o mundo de forma leve e autêntica. Nesta biografia, vamos mergulhar nesse universo e descobrir o que faz o coração de {nome} bater mais forte.
+
+---
+"""
+    # ---- CAPÍTULO 14: HOBBY PRINCIPAL ----
+    conteudo_c14 = ""
+    hobby = get_safe('c14_hobby')
+    if hobby:
+        conteudo_c14 += f"**{nome}** adora **{hobby}**. "
+    origem = get_safe('c14_origem')
+    if origem:
+        conteudo_c14 += f"Essa paixão começou {origem}. "
+    paz = get_safe('c14_paz')
+    if paz:
+        conteudo_c14 += f"Em um momento difícil, essa atividade trouxe paz: \"{paz}\". "
+    frase = get_safe('c14_frase_capa')
+    if frase:
+        conteudo_c14 += f"Se fosse resumir em uma frase: **\"{frase}\"**. "
+
+    if conteudo_c14:
+        texto += "## 🌟 MEU HOBBY FAVORITO\n\n" + conteudo_c14 + "\n\n"
+
+    # ---- CAPÍTULO 4: TALENTOS ----
+    conteudo_c4 = ""
+    talentos = get_safe('c4_talentos')
+    if talentos:
+        conteudo_c4 += f"Além do hobby, {nome} tem talentos especiais: {talentos}. "
+    autentico = get_safe('c4_autentico')
+    if autentico:
+        conteudo_c4 += f"Um momento de autenticidade foi quando {autentico}. "
+    desafio = get_safe('c4_desafio')
+    if desafio:
+        conteudo_c4 += f"Um desafio que enfrentou: {desafio}. "
+    aprendizado = get_safe('c4_aprendizado')
+    if aprendizado:
+        conteudo_c4 += f"Com isso, aprendeu que {aprendizado}. "
+
+    if conteudo_c4:
+        texto += "## ✨ TALENTOS QUE BRILHAM\n\n" + conteudo_c4 + "\n\n"
+
+    # ---- CAPÍTULO 19: FASES DA VIDA ----
+    conteudo_c19 = ""
+    infancia = get_safe('c19_infancia')
+    adolescencia = get_safe('c19_adolescencia')
+    adulta = get_safe('c19_adulta')
+    if infancia:
+        conteudo_c19 += f"Na infância, {infancia}. "
+    if adolescencia:
+        conteudo_c19 += f"Na adolescência, {adolescencia}. "
+    if adulta:
+        conteudo_c19 += f"Na vida adulta, {adulta}. "
+    aprendizado_fases = get_safe('c19_aprendizado')
+    if aprendizado_fases:
+        conteudo_c19 += f"Cada fase trouxe o aprendizado: {aprendizado_fases}. "
+
+    if conteudo_c19:
+        texto += "## 🌱 AO LONGO DA VIDA\n\n" + conteudo_c19 + "\n\n"
+
+    # ---- CAPÍTULO 8: CONQUISTAS MARCANTES ----
+    conteudo_c8 = ""
+    memoria = get_safe('c8_memoria')
+    if memoria:
+        conteudo_c8 += f"Uma conquista marcante: {memoria}. "
+    aprendizado_conquista = get_safe('c8_aprendizado')
+    if aprendizado_conquista:
+        conteudo_c8 += f"Isso ensinou que {aprendizado_conquista}. "
+
+    if conteudo_c8:
+        texto += "## 🏆 CONQUISTAS MARCANTES\n\n" + conteudo_c8 + "\n\n"
+
+    # ---- CAPÍTULO 20: PEQUENOS HÁBITOS ----
+    conteudo_c20 = ""
+    habito = get_safe('c20_habito')
+    exemplo = get_safe('c20_exemplo')
+    dificuldade = get_safe('c20_dificuldade')
+
+    if habito:
+        conteudo_c20 += f"{nome} {habito.lower()} consegue manter um hábito por 21 dias. "
+    if exemplo:
+        conteudo_c20 += f"Um pequeno hábito que trouxe grande mudança: {exemplo}. "
+    if dificuldade:
+        conteudo_c20 += f"A maior dificuldade para manter a constância é {dificuldade}. "
+
+    if conteudo_c20:
+        texto += "## 🌿 O PODER DOS PEQUENOS HÁBITOS\n\n" + conteudo_c20 + "\n\n"
+
+    # ---- CAPÍTULO 21: SONHOS PARA O FUTURO ----
+    conteudo_c21 = ""
+    sonho = get_safe('c21_sonho')
+    plano = get_safe('c21_plano')
+    if sonho:
+        conteudo_c21 += f"Seu principal sonho é {sonho}. "
+    if plano:
+        conteudo_c21 += f"Para realizá-lo, planeja {plano}. "
+
+    if conteudo_c21:
+        texto += "## 🔮 OLHANDO PARA O FUTURO\n\n" + conteudo_c21 + "\n\n"
+
+    # ---- CAPÍTULO 26: LEGADO FINAL ----
+    legado = get_safe('c26_legado')
+    if legado:
+        texto += "## 💖 MENSAGEM FINAL\n\n"
+        texto += f"{legado}\n\n"
+
+    texto += "---\n"
+    texto += "## PARA SEMPRE...\n\n"
+    texto += f"A história de {nome} é feita de pequenos e grandes momentos, de hobbies que aquecem a alma e talentos que iluminam o caminho. Que esta biografia sirva como um lembrete de que cada passatempo, cada conquista e cada desafio são peças preciosas no mosaico da vida. Que venham muitos novos capítulos, repletos de criatividade, alegria e propósito!\n\n"
+    texto += f"*Com admiração e carinho,\n{nome}*"
+    return texto
+
+
+def gerar_biografia_profissional():
+    nome = get_safe('nome_autor', 'Autor Desconhecido')
+    data = datetime.now().strftime("%d/%m/%Y")
+
+    texto = f"""# PERFIL PROFISSIONAL DE {nome.upper()}
+## Trajetória, Competências e Realizações
+*Gerado em {data}*
+
+---
+
+### APRESENTAÇÃO
+
+**{nome}** é um profissional cuja trajetória reflete dedicação, aprendizado contínuo e busca por excelência. Ao longo dos anos, construiu uma carreira sólida, baseada em valores éticos e na paixão pelo que faz. Este perfil reúne as principais experiências, formações e competências que o(a) tornam um profissional diferenciado.
+
+---
+"""
+    # ---- CAPÍTULO 10: FORMAÇÃO E CAPACITAÇÃO ----
+    conteudo_c10 = ""
+    formacao = get_safe('c10_formacao')
+    cursos = get_safe('c10_cursos')
+    graduacoes = get_safe('c10_graduacoes')
+
+    if formacao:
+        conteudo_c10 += f"• {formacao}\n"
+    if cursos:
+        conteudo_c10 += f"• Cursos: {cursos}\n"
+    if graduacoes:
+        conteudo_c10 += f"• Graduações: {graduacoes}\n"
+
+    if conteudo_c10:
+        texto += "## 📚 FORMAÇÃO ACADÊMICA E CAPACITAÇÃO\n\n" + conteudo_c10 + "\n"
+
+    # ---- CAPÍTULO 10: EXPERIÊNCIAS PROFISSIONAIS ----
+    experiencias = get_safe('c10_experiencias')
+    if experiencias:
+        texto += "## 💼 EXPERIÊNCIAS PROFISSIONAIS RELEVANTES\n\n"
+        texto += f"{experiencias}\n\n"
+
+    # ---- CAPÍTULO 4 E 10: COMPETÊNCIAS E HABILIDADES ----
+    conteudo_comp = ""
+    talentos = get_safe('c4_talentos')
+    competencias = get_safe('c10_competencias')
+
+    if talentos:
+        conteudo_comp += f"• **Principais talentos:** {talentos}\n"
+    if competencias:
+        conteudo_comp += f"• **Competências desenvolvidas:** {competencias}\n"
+
+    if conteudo_comp:
+        texto += "## ⚡ COMPETÊNCIAS E HABILIDADES\n\n" + conteudo_comp + "\n"
+
+    # ---- CAPÍTULO 4: DESAFIOS E SUPERAÇÕES ----
+    conteudo_desafios = ""
+    desafio = get_safe('c4_desafio')
+    aprendizado = get_safe('c4_aprendizado')
+
+    if desafio:
+        conteudo_desafios += f"• **Desafio marcante:** {desafio}\n"
+    if aprendizado:
+        conteudo_desafios += f"• **Aprendizado:** {aprendizado}\n"
+
+    if conteudo_desafios:
+        texto += "## 🚀 DESAFIOS E SUPERAÇÕES\n\n" + conteudo_desafios + "\n"
+
+    # ---- CAPÍTULO 10: APLICAÇÃO DO CONHECIMENTO ----
+    aplicacao = get_safe('c10_aplicacao_conhecimento')
+    if aplicacao:
+        texto += "## 🧠 APLICAÇÃO DO CONHECIMENTO\n\n"
+        texto += f"{aplicacao}\n\n"
+
+    # ---- CAPÍTULO 10: RESULTADOS ALCANÇADOS ----
+    resultados = get_safe('c10_resultados_concretos')
+    if resultados:
+        texto += "## 📈 RESULTADOS ALCANÇADOS\n\n"
+        texto += f"{resultados}\n\n"
+
+    # ---- CAPÍTULO 11: OBJETIVO PROFISSIONAL ----
+    objetivo = get_safe('c11_objetivo_profissional')
+    if objetivo:
+        texto += "## 🎯 OBJETIVO PROFISSIONAL\n\n"
+        texto += f"{objetivo}\n\n"
+
+    # ---- CAPÍTULO 21: VISÃO DE FUTURO ----
+    conteudo_futuro = ""
+    sonho = get_safe('c21_sonho')
+    plano = get_safe('c21_plano')
+
+    if sonho:
+        conteudo_futuro += f"• **Sonho/objetivo:** {sonho}\n"
+    if plano:
+        conteudo_futuro += f"• **Passos planejados:** {plano}\n"
+
+    if conteudo_futuro:
+        texto += "## 🔮 VISÃO DE FUTURO\n\n" + conteudo_futuro + "\n"
+
+    # ---- CAPÍTULO 26: LEGADO FINAL ----
+    legado = get_safe('c26_legado')
+    if legado:
+        texto += "## 💬 MENSAGEM DE LEGADO\n\n"
+        texto += f"{legado}\n\n"
+
+    texto += "---\n## CONSIDERAÇÕES FINAIS\n\n"
+    texto += f"A trajetória de {nome} é um exemplo de como a determinação, o aprendizado constante e a paixão pelo trabalho podem construir uma carreira significativa. Que este perfil sirva de inspiração e de registro para as futuras conquistas que ainda virão.\n\n"
+    texto += f"*{nome}*"
+    return texto
+
+
+def gerar_biografia_infantil(genero):
+    nome = get_safe('nome_autor', 'Autor Desconhecido')
+    data = datetime.now().strftime("%d/%m/%Y")
+
+    if genero == "Menina":
+        artigo, pronome_sujeito, pronome_objeto = "uma", "ela", "a"
+        pronome_possessivo, artigo_definido, personagem = "sua", "a", "princesa"
+    else:
+        artigo, pronome_sujeito, pronome_objeto = "um", "ele", "o"
+        pronome_possessivo, artigo_definido, personagem = "seu", "o", "príncipe"
+
+    texto = f"""# 🌈 A GRANDE JORNADA DE {nome.upper()}
+## Uma história de coragem, aprendizado e propósito
+*Gerado em {data}*
+
+---
+
+### 🌟 ERA UMA VEZ...
+
+Era uma vez {artigo} {personagem} muito especial chamad{artigo_definido} **{nome}**. {pronome_sujeito.capitalize()} vivia em um lugar onde os sonhos eram como sementes que, com cuidado, podiam se transformar em grandes árvores. Seu coração era cheio de bondade e {pronome_possessivo} mente vivia cheia de perguntas curiosas, buscando sempre entender as maravilhas do mundo. Vamos conhecer {pronome_possessivo} linda história?
+
+---
+"""
+
+    # Capítulo 1 – Aprendizado e Mindset
+    conteudo_c1 = ""
+    mudanca = get_safe('c1_mudanca')
+    if mudanca == "Sim":
+        conteudo_c1 += f"{nome} descobriu algo incrível: que podia aprender coisas novas todos os dias e treinar seu pensamento para ser cada vez mais forte! "
     
-    if estilo == "Infantil":
-        art, pers = ("uma", "princesa") if genero_inf == "Menina" else ("um", "príncipe")
-        pron = "ela" if genero_inf == "Menina" else "ele"
-        return f"""# 🌈 AS AVENTURAS REAIS DE {nome}
+    freq = get_safe('c1_aprendizado')
+    if freq and freq != "Nunca":
+        conteudo_c1 += f"{pronome_sujeito.capitalize()} amava aprender {freq.lower()}, sempre em busca de novas descobertas. "
 
-Era uma vez {art} {pers} especial. {nome} descobriu que aprender algo novo {get_v('c1_frequencia').lower()} era como regar um jardim mágico. Para {nome}, renovar a mente é "{get_v('c1_renovar')}".
+    reacao = get_safe('c1_reacao')
+    if "Persistir" in str(reacao):
+        conteudo_c1 += f"Quando encontrava um caminho difícil, {pronome_sujeito} não parava: respirava fundo, pensava em uma nova estratégia e seguia em frente com coragem. "
 
-Como herdeir{'a' if genero_inf=='Menina' else 'o'} de promessas, {pron} entendeu que desafios revelam quem somos: "{get_v('c2_reflexao')}". Com talentos como {get_v('c4_talentos')}, ajuda a todos, cuidando do castelo com {get_v('c3_praticas')}. As lições começaram cedo, brincando de {get_v('c19_infancia')}. Hoje, brilha com virtudes como {get_v('c16_virtudes')}. Seu maior sonho é {get_v('c21_sonho')}.
+    if conteudo_c1:
+        texto += "## 📖 CAPÍTULO 1: O PODER DE APRENDER\n\n" + conteudo_c1 + "\n\n"
 
-**Mensagem do Reino:** "{get_v('c26_legado')}" """
-
-    elif estilo == "Talento (Profissional)":
-        return f"""# 💼 TRAJETÓRIA E EXCELÊNCIA: {nome}
-
-Com formação em {get_v('c10_formacao')}, {nome} pauta sua carreira na premissa de que renovar a mente é "{get_v('c1_renovar')}". Movido por {get_v('c1_motiva')}, consolidou competências após um momento de virada: {get_v('c12_virada')}.
-
-Seu caráter é forjado pelas virtudes {get_v('c16_virtudes')}, aplicadas em desafios como {get_v('c8_desafio')}. Um exemplo de sua integridade foi quando {get_v('c16_exemplo')}. O seu plano envolve {get_v('c21_plano')} para alcançar o sonho de {get_v('c21_sonho')}, impactando o mundo pois "{get_v('c25_alcance')}".
-
-**Legado:** "{get_v('c26_legado')}" """
-
-    else: # Hobby
-        return f"""# 🎨 A ESSÊNCIA E O LAZER DE {nome}
-
-Para {nome}, a vida ganha cor no hobby **{get_v('c14_hobby')}**. Surgido de {get_v('c14_origem')}, este passatempo traz paz em momentos como "{get_v('c14_paz')}". Sua autenticidade, marca registrada desde a infância ao brincar de {get_v('c19_infancia')}, revela-se quando {get_v('c4_autentico')}. Aliando talentos de {get_v('c4_talentos')} ao hábito de {get_v('c20_habito')}, {nome} constrói um caminho pleno.
-
-**Reflexão:** "{get_v('c26_legado')}" """
-
-# --- 6. BARRA LATERAL (BOTÃO E EXIBIÇÃO DO RESULTADO) ---
-with st.sidebar:
-    st.header("📖 Gerar Biografia")
-    estilo_sel = st.selectbox("Escolha o Estilo:", ["Talento (Profissional)", "Hobby / Passatempo", "Infantil"])
-    gen_inf = None
-    if estilo_sel == "Infantil":
-        gen_inf = st.radio("Gênero:", ["Menina", "Menino"])
+    # Capítulo 2 – Identidade e Herança
+    conteudo_c2 = ""
+    heranca = get_safe('c2_heranca')
+    if "herdeiro" in str(heranca).lower():
+        conteudo_c2 += f"{nome} sabia que tinha uma identidade real: {pronome_sujeito} era filh{artigo_definido} amad{artigo_definido} do Rei do Universo, herdeir{artigo_definido} de promessas valiosas. "
     
-    if st.button("🚀 Gerar agora"):
-        if not st.session_state.nome_autor or st.session_state.nome_autor == "Autor Desconhecido":
-            st.error("Por favor, preencha o nome no Bloco A.")
-        else:
-            st.session_state.livro_gerado = gerar_narrativa(estilo_sel, gen_inf)
+    desafios = get_safe('c2_desafios')
+    if "oportunidades" in str(desafios).lower():
+        conteudo_c2 += f"Encarava as dificuldades como degraus para subir mais alto e ficar ainda mais forte. "
 
-    # EXIBIÇÃO NA SIDEBAR LOGO ABAIXO DO BOTÃO
+    if conteudo_c2:
+        texto += "## 👑 CAPÍTULO 2: QUEM EU SOU DE VERDADE\n\n" + conteudo_c2 + "\n\n"
+
+    # Capítulo 3 – Corpo e Espírito
+    conteudo_c3 = ""
+    corpo = get_safe('c3_corpo')
+    if corpo:
+        # corpo é uma lista, converter para string
+        corpo_str = ', '.join(corpo) if isinstance(corpo, list) else str(corpo)
+        conteudo_c3 += f"{nome} cuidava do seu corpo com muito carinho, praticando {corpo_str}. "
+    
+    espirito = get_safe('c3_espirito')
+    if espirito:
+        espirito_str = ', '.join(espirito) if isinstance(espirito, list) else str(espirito)
+        conteudo_c3 += f"Para manter seu coração em paz, {pronome_sujeito} gostava de {espirito_str}, fortalecendo seu espírito. "
+
+    if conteudo_c3:
+        texto += "## ❤️ CAPÍTULO 3: CUIDANDO DO MEU TESOURO\n\n" + conteudo_c3 + "\n\n"
+
+    # Capítulo 4 – Talentos
+    conteudo_c4 = ""
+    talentos = get_safe('c4_talentos')
+    if talentos:
+        conteudo_c4 += f"{nome} recebeu dons especiais, como {talentos}. Quando usava esses talentos, sentia que podia ajudar muitas pessoas! "
+
+    autentico = get_safe('c4_autentico')
+    if autentico:
+        conteudo_c4 += f"Um dos momentos em que {pronome_sujeito} foi mais verdadeiro(a) foi quando {autentico}. "
+
+    if conteudo_c4:
+        texto += "## ✨ CAPÍTULO 4: MEUS DONS ESPECIAIS\n\n" + conteudo_c4 + "\n\n"
+
+    # Capítulos 5 a 10 – Propósito e História
+    conteudo_c5_10 = ""
+    if get_safe('c5_reflexao'):
+        conteudo_c5_10 += f"Sua história merecia ser contada para inspirar outros, pois {get_safe('c5_reflexao')}. "
+    
+    memoria = get_safe('c8_memoria')
+    if memoria:
+        conteudo_c5_10 += f"Uma grande vitória que {nome} celebrou foi {memoria}. "
+
+    if conteudo_c5_10:
+        texto += "## 🚀 CAPÍTULO 5-10: UMA HISTÓRIA PARA CONTAR\n\n" + conteudo_c5_10 + "\n\n"
+
+    # Capítulos 11 a 15 – Escolhas e Relações
+    conteudo_c11_15 = ""
+    virada = get_safe('c12_virada')
+    if virada:
+        conteudo_c11_15 += f"Houve um momento marcante de mudança: {virada}. "
+    
+    papeis = get_safe('c15_escolhidos')
+    if papeis:
+        papeis_str = ', '.join(papeis) if isinstance(papeis, list) else str(papeis)
+        conteudo_c11_15 += f"Nesta jornada, {nome} desempenhava com amor os papéis de {papeis_str}. "
+
+    if conteudo_c11_15:
+        texto += "## 👨‍👩‍👧 CAPÍTULO 11-15: CAMINHOS E AMIGOS\n\n" + conteudo_c11_15 + "\n\n"
+
+    # Capítulo 16 – Virtudes (O Caráter)
+    virtudes = get_safe('c16_virtudes')
+    if virtudes:
+        virtudes_str = ', '.join(virtudes) if isinstance(virtudes, list) else str(virtudes)
+        texto += f"## 💎 CAPÍTULO 16: VIRTUDES QUE BRILHAM\n\nComo {artigo} {personagem} valente, {nome} carregava consigo virtudes como {virtudes_str}. Elas eram como pedras preciosas que guiavam cada passo.\n\n"
+
+    # Capítulos 19 e 20 – Fases e Hábitos
+    conteudo_c19_20 = ""
+    infancia = get_safe('c19_infancia')
+    if infancia:
+        conteudo_c19_20 += f"As sementes dessa história foram plantadas quando {nome} brincava de {infancia}. "
+    
+    habito = get_safe('c20_exemplo')
+    if habito:
+        conteudo_c19_20 += f"Hoje, {pronome_sujeito} entende que pequenas atitudes, como {habito}, trazem grandes frutos. "
+
+    if conteudo_c19_20:
+        texto += "## 🕰️ CAPÍTULO 19-20: AS SEMENTES DO TEMPO\n\n" + conteudo_c19_20 + "\n\n"
+
+    # Capítulo 21 a 26 – Futuro e Legado
+    conteudo_final = ""
+    sonho = get_safe('c21_sonho')
+    if sonho:
+        conteudo_final += f"O maior sonho de {nome} para os próximos capítulos desta aventura é {sonho}. "
+    
+    legado = get_safe('c26_legado')
+    if legado:
+        conteudo_final += f"\nA mensagem final que {pronome_sujeito} deixa para o mundo é: \"{legado}\"."
+
+    if conteudo_final:
+        texto += "## 🌠 CAPÍTULO 21-26: NOVOS HORIZONTES\n\n" + conteudo_final + "\n\n"
+
+    # Conclusão
+    texto += "---\n"
+    texto += "## 🌈 A JORNADA CONTINUA...\n\n"
+    texto += f"Esta é a história de {nome}, {artigo} {personagem} que nos ensina que, com propósito, fé e perseverança, cada um de nós pode escrever um livro maravilhoso com a própria vida.\n\n"
+    texto += f"*Fim (por enquanto...) – Com admiração para {nome}*"
+    
+    return texto
+
+# ==================================================
+# BARRA LATERAL COM SELEÇÃO DE ESTILO
+# ==================================================
+st.sidebar.markdown("---")
+st.sidebar.header("📖 Gerar livro")
+
+estilo = st.sidebar.selectbox(
+    "Escolha o estilo da narrativa:",
+    ["Hobby / Passatempo", "Profissional", "Infantil"]
+)
+
+genero = None
+if estilo == "Infantil":
+    genero = st.sidebar.radio("Gênero da criança:", ["Menina", "Menino"])
+
+if st.sidebar.button("Gerar biografia"):
+    if estilo == "Hobby / Passatempo":
+        st.session_state.livro_gerado = gerar_biografia_hobby()
+    elif estilo == "Profissional":
+        st.session_state.livro_gerado = gerar_biografia_profissional()
+    else:
+        st.session_state.livro_gerado = gerar_biografia_infantil(genero)
+    st.sidebar.success("Biografia gerada! Vá para a aba '📖 Livro Gerado'.")
+
+# ==================================================
+# ABA DO LIVRO GERADO
+# ==================================================
+with tab_d:
+    st.header("Sua Biografia")
     if st.session_state.livro_gerado:
-        st.markdown("---")
-        st.subheader("📄 Resultado:")
         st.markdown(st.session_state.livro_gerado)
-        st.download_button("📥 Baixar TXT", st.session_state.livro_gerado, file_name="biografia_completa.txt")
+        st.download_button(
+            label="📥 Baixar biografia",
+            data=st.session_state.livro_gerado,
+            file_name=f"biografia_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
+            mime="text/plain"
+        )
+    else:
+        st.info("Clique no botão na barra lateral para gerar sua biografia.")
+
 
 
 
