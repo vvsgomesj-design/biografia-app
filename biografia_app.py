@@ -320,7 +320,7 @@ with tab_b:
     # ==================================================
     # CAPÍTULO 11 – TÉCNICAS DE SELEÇÃO
     # ==================================================
-    with st.expander("Cap. 11 – Técnicas de Seleção e Critérios"):
+    with st.expander("Cap. 11 – Técnicas de Seleção e Critérios")
         c11_etica = st.radio(
             "Para você, ética é determinante em qualquer escolha importante?",
             ["Sim", "Não"]
@@ -981,6 +981,7 @@ with tab_d:
         )
     else:
         st.info("Clique no botão na barra lateral para gerar sua biografia.")
+
 
 
 
