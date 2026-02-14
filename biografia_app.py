@@ -969,7 +969,16 @@ Era uma vez {artigo} {personagem} muito especial chamad**{artigo_definido}** **{
     if infancia:
         texto += f"## 🧸 CAPÍTULO 19: QUANDO ERA PEQUENO(A)\n\n"
         texto += f"Quando {pronome_sujeito} era pequeno(a), {infancia}. "
-    
+    adolescencia = get_safe('c19_adolescencia')
+        if adolescencia:
+            texto += f"Na adolescência, {adolescencia}. "
+        adulta = get_safe('c19_adulta')
+        if adulta:
+            texto += f"Na vida adulta, {adulta}. "
+        aprendizado_fases = get_safe('c19_aprendizado')
+        if aprendizado_fases:
+            texto += f"Olhando para cada fase, {pronome_sujeito} percebeu que {aprendizado_fases}. "
+    texto += "\n\n"
 
     # Capítulo 20 – Pequenos hábitos
     exemplo_habito = get_safe('c20_exemplo')
@@ -1044,6 +1053,7 @@ with tab_d:
         )
     else:
         st.info("Clique no botão na barra lateral para gerar sua biografia.")
+
 
 
 
