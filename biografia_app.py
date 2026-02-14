@@ -300,6 +300,29 @@ if st.sidebar.button("Gerar biografia"):
         st.session_state.livro_gerado = gerar_biografia_hobby()
     elif estilo == "Profissional":
         st.session_state.livro_gerado = gerar_biografia_profissional()
+    else:  # Infantil
+        st.session_state.livro_gerado = gerar_biografia_infantil(genero)
+    st.sidebar.success("Biografia gerada! Vá para a aba '📖 Livro Gerado'.")
+
+# ==================================================
+# ABA DO LIVRO GERADO
+# ==================================================
+with tab_d:
+    st.header("Sua Biografia")
+    if st.session_state.livro_gerado:
+        st.markdown(st.session_state.livro_gerado)
+        st.download_button(
+            label="📥 Baixar biografia",
+            data=st.session_state.livro_gerado,
+            file_name=f"biografia_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
+            mime="text/plain"
+        )
+    else:
+        st.info("Clique no botão na barra lateral para gerar sua biografia."):
+    if estilo == "Hobby / Passatempo":
+        st.session_state.livro_gerado = gerar_biografia_hobby()
+    elif estilo == "Profissional":
+        st.session_state.livro_gerado = gerar_biografia_profissional()
     else:
         st.session_state.livro_gerado = gerar_biografia_infantil(genero)
     st.sidebar.success("Biografia gerada! Vá para a aba '📖 Livro Gerado'.")
@@ -322,5 +345,6 @@ with tab_d:
     else:
         st.session_state.livro_gerado = gerar_biografia_infantil(genero)
     st.sidebar.success("Biografia gerada! Vá para a aba '📖 Livro Gerado'.")
+
 
 
