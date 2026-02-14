@@ -61,66 +61,58 @@ with tab_c:
         st.multiselect("Sentidos do livro: (Cap 26)", ["Visão", "Tato", "Olfato", "Audição"], key='c26_sinestesia')
         st.text_area("Sua mensagem de legado final: (Cap 26)", key='c26_legado')
 
-# --- MOTORES DE NARRATIVA ---
-
-def gerar_texto(estilo, gen=None):
-    nome = get_f('nome_autor').upper()
+# --- 5. MOTOR DE NARRATIVA COERENTE ---
+def gerar_biografia(estilo, gen=None):
+    n = get_f('nome_autor').upper()
     
     if estilo == "Infantil":
         art, pers = ("uma", "princesa") if gen == "Menina" else ("um", "príncipe")
         pron = "ela" if gen == "Menina" else "ele"
-        return f"""# 🌈 A JORNADA REAL DE {nome}
-        
-Era uma vez {art} {pers} especial que descobriu que aprender coisas novas {get_f('c1_aprendizado').lower()} era como regar um jardim. Para {nome}, renovar a mente significa "{get_f('c1_renovar')}". 
+        return f"""# 🌈 AS AVENTURAS REAIS DE {n}
 
-{pron.capitalize()} sabe que é herdeir{ 'a' if gen=='Menina' else 'o'} de promessas valiosas, e seus desafios revelam que "{get_f('c2_reflexao')}". Com talentos mágicos como {get_f('c4_talentos')}, ajuda a todos, sempre cuidando do castelo com {get_f('c3_praticas')}. 
+Era uma vez {art} {pers} especial que descobriu que aprender algo novo {get_f('c1_aprendizado').lower()} era o segredo para o crescimento. Para {n}, renovar a mente significa: "{get_f('c1_renovar')}".
 
-Tudo começou quando brincava de {get_f('c19_infancia')}. Hoje, brilha com as virtudes de {get_f('c16_virtudes')}, como quando {get_f('c16_exemplo')}. Seu maior sonho é {get_f('c21_sonho')}.
+Como herdeir{'a' if gen=='Menina' else 'o'} de grandes promessas, aprendeu que desafios revelam quem somos, pois "{get_f('c2_reflexao')}". Com talentos como {get_f('c4_talentos')}, ajuda a todos, cuidando do seu castelo com {get_f('c3_praticas')}. As lições começaram cedo, brincando de {get_f('c19_infancia')}. Hoje, brilha com virtudes como {get_f('c16_virtudes')}. Seu maior sonho é {get_f('c21_sonho')}.
 
 **Mensagem do Reino:** "{get_f('c26_legado')}" """
 
-    elif estilo == "Profissional":
-        return f"""# 💼 PERFIL BIOGRÁFICO: {nome}
+    elif estilo == "Talento (Profissional)":
+        return f"""# 💼 TRAJETÓRIA E EXCELÊNCIA: {n}
 
-Com uma trajetória pautada em {get_f('c10_formacao')}, {nome} define a renovação mental como "{get_f('c1_renovar')}". Movido por {get_f('c1_motiva')}, construiu competências sólidas após um momento 'Uau' em sua vida: {get_f('c12_virada')}.
+Com formação em {get_f('c10_formacao')}, {n} pauta a sua carreira na premissa de que renovar a mente é "{get_f('c1_renovar')}". Movido por {get_f('c1_motiva')}, consolidou competências após um momento de virada: {get_f('c12_virada')}.
 
-Seu caráter é forjado pelas virtudes {get_f('c16_virtudes')}, aplicadas em desafios como {get_f('c8_desafio')}. Um exemplo de sua integridade foi quando {get_f('c16_exemplo')}.
-
-**Visão de Futuro:** Projeta {get_f('c21_sonho')} através de {get_f('c21_plano')}. Este legado pretende impactar o mundo pois "{get_f('c25_alcance')}".
+Seu caráter é definido pelas virtudes {get_f('c16_virtudes')}, aplicadas em desafios como {get_f('c8_desafio')}. Exemplo disso foi quando {get_f('c16_exemplo')}. O seu plano envolve {get_f('c21_plano')} para alcançar o sonho de {get_f('c21_sonho')}, impactando o mundo através de "{get_f('c25_alcance')}".
 
 **Legado:** "{get_f('c26_legado')}" """
 
     else: # Hobby
-        return f"""# 🎨 A ESSÊNCIA E O LAZER DE {nome}
+        return f"""# 🎨 A ESSÊNCIA E O LAZER DE {n}
 
-Para {nome}, a vida ganha sentido no hobby **{get_f('c14_hobby')}**. Esta paixão surgiu {get_f('c14_origem')} e hoje é seu porto seguro, trazendo paz em momentos como "{get_f('c14_paz')}".
+Para {n}, a vida ganha cor no hobby **{get_f('c14_hobby')}**. Surgido de {get_f('c14_origem')}, este passatempo traz paz em momentos como "{get_f('c14_paz')}". Sua autenticidade, marca registrada desde a infância ao brincar de {get_f('c19_infancia')}, revela-se quando {get_f('c4_autentico')}. Aliando os talentos de {get_f('c4_talentos')} ao hábito de {get_f('c20_habito')}, {n} constrói um caminho pleno.
 
-Sua autenticidade, marca registrada desde quando brincava de {get_f('c19_infancia')}, é visível quando {get_f('c4_autentico')}. Aliando seus talentos de {get_f('c4_talentos')} ao hábito de {get_f('c20_habito')}, {nome} vive plenamente.
+**Reflexão:** "{get_f('c26_legado')}" """
 
-**Reflexão de Vida:** "{get_f('c26_legado')}" """
-
-# --- BARRA LATERAL (GERAÇÃO E EXIBIÇÃO) ---
+# --- 6. BARRA LATERAL (BOTÃO E RESULTADO) ---
 with st.sidebar:
-    st.header("⚙️ Configurações do Livro")
-    estilo_sel = st.selectbox("Selecione o Estilo:", ["Profissional", "Hobby / Passatempo", "Infantil"])
+    st.header("📖 Gerador de Conteúdo")
+    estilo_sel = st.selectbox("Escolha o Estilo:", ["Talento (Profissional)", "Hobby / Passatempo", "Infantil"])
     genero_inf = None
     if estilo_sel == "Infantil":
         genero_inf = st.radio("Gênero:", ["Menina", "Menino"])
     
-    st.markdown("---")
     if st.button("🚀 Gerar Biografia"):
         if not st.session_state.nome_autor:
-            st.error("Por favor, insira o nome.")
+            st.error("Por favor, preencha o nome no Bloco A.")
         else:
-            conteudo = gerar_texto(estilo_sel, genero_inf)
-            st.session_state.livro_gerado = conteudo
+            st.session_state.livro_gerado = gerar_biografia(estilo_sel, genero_inf)
 
-    # EXIBIÇÃO NA PRÓPRIA SIDEBAR
+    # EXIBIÇÃO LOGO ABAIXO DO BOTÃO
     if st.session_state.livro_gerado:
         st.markdown("---")
-        st.subheader("📖 Resultado Final:")
+        st.subheader("📄 Biografia Gerada:")
         st.markdown(st.session_state.livro_gerado)
-        st.download_button("📥 Baixar TXT", st.session_state.livro_gerado, file_name="biografia.txt")
+        st.download_button("📥 Baixar TXT", st.session_state.livro_gerado, file_name="biografia_completa.txt")
+
 
 
 
