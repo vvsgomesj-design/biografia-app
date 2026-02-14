@@ -617,8 +617,8 @@ with tab_c:
         )
 
         c26_legado = st.text_area("Qual mensagem final você deseja deixar como legado?")
-
- FUNÇÕES DE GERAÇÃO (cada uma com seu estilo)
+#=====================
+# FUNÇÕES DE GERAÇÃO (cada uma com seu estilo)
 # ==================================================
 
 def gerar_biografia_hobby():
@@ -913,6 +913,7 @@ with tab_d:
         )
     else:
         st.info("Clique no botão na barra lateral para gerar sua biografia.")
+
 
 
 
