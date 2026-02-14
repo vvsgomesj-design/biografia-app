@@ -1,93 +1,90 @@
 import streamlit as st
 from datetime import datetime
 
-# Configuração da página
-st.set_page_config(page_title="Biografia App", layout="wide")
-st.title("📘 Minha Biografia")
+# --- CONFIGURAÇÃO E ESTILO ---
+st.set_page_config(page_title="Editor de Biografias Profissional", layout="wide")
 
-# Inicializa o estado para o livro gerado
-if 'livro_gerado' not in st.session_state:
-    st.session_state.livro_gerado = ""
-
-# --- FUNÇÃO DE BUSCA SEGURA ---
 def get_safe(key, default=""):
-    """Recupera o valor do session_state garantindo que ele exista."""
     valor = st.session_state.get(key)
     if valor:
         if isinstance(valor, list):
             return ", ".join(valor) if len(valor) > 0 else default
-        return valor
+        return str(valor)
     return default
 
-# Criação das abas
-tab_a, tab_b, tab_c, tab_d = st.tabs([
-    "Bloco A: Fundamentos",
-    "Bloco B: Legado e Relações",
-    "Bloco C: Estrutura",
-    "📖 Livro Gerado"
-])
+# --- LISTA DAS 41 VIRTUDES ---
+VIRTUDES_LISTA = [
+    "Amor", "Alegria", "Auto-domínio", "Bondade", "Benignidade", "Benevolência", 
+    "Compaixão", "Coragem", "Cortesias", "Castidade", "Discernimento", "Disciplina", 
+    "Diligência", "Esperança", "Entusiasmo", "Fé", "Fidelidade", "Fortaleza", 
+    "Generosidade", "Gratidão", "Gentileza", "Honra", "Humildade", "Honestidade", 
+    "Justiça", "Lealdade", "Longanimidade", "Moderação", "Mansidão", "Obediência", 
+    "Ordem", "Paciência", "Perdão", "Prudência", "Piedade", "Respeito", 
+    "Responsabilidade", "Sabedoria", "Temperança", "Tolerância", "Zelo"
+]
 
-# ==================================================
-# BLOCO A – CAPÍTULOS 1 A 10
-# ==================================================
+# --- INTERFACE ---
+st.title("📘 Sistema de Biografias Trampolim")
+
+tab_a, tab_b, tab_c, tab_d = st.tabs(["Bloco A", "Bloco B", "Bloco C", "📖 Livro Gerado"])
+
 with tab_a:
-    st.header("Bloco A: Fundamentos e Identidade")
-    st.text_input("Nome Completo:", "Autor Desconhecido", key='nome_autor')
+    st.text_input("Nome Completo:", key='nome_autor')
+    with st.expander("Cap. 1 a 5"):
+        st.text_area("O que é renovar a mente para você? (Cap 1)", key='c1_renovar')
+        st.text_area("Como os desafios revelam sua identidade? (Cap 2)", key='c2_reflexao')
+        st.multiselect("Práticas de corpo e espírito: (Cap 3)", ["Oração", "Exercício", "Leitura", "Jejum"], key='c3_praticas')
+        st.text_input("Seus maiores talentos: (Cap 4)", key='c4_talentos')
+        st.text_area("Por que sua história deve ser contada? (Cap 5)", key='c5_reflexao')
 
-    with st.expander("Cap. 1 a 3 – Mente, Identidade e Organização"):
-        col1, col2 = st.columns(2)
-        with col1:
-            st.radio("É possível mudar padrões de pensamento?", ["Sim", "Não", "Não tenho certeza"], key='c1_mudanca')
-            st.selectbox("Frequência de aprendizado:", ["Diariamente", "Semanalmente", "Raramente", "Nunca"], key='c1_aprendizado')
-            st.radio("Reação a desafios:", ["Desistir facilmente", "Persistir e buscar novas estratégias", "Esperar que alguém resolva"], key='c1_reacao')
-            st.text_area("O que significa 'renovar a mente'?", key='c1_renovar')
-        with col2:
-            st.radio("Relação com herança espiritual:", ["Sinto-me herdeiro(a) de Deus", "Às vezes me esqueço", "Ainda não compreendo"], key='c2_heranca')
-            st.radio("Como encara os desafios?", ["Como oportunidade de crescimento", "Com medo ou insegurança"], key='c2_desafios')
-            st.multiselect("Práticas para o corpo:", ["Atividade física", "Alimentação equilibrada", "Sono regulado"], key='c3_corpo')
-            st.multiselect("Práticas para o espírito:", ["Oração", "Meditação", "Leitura espiritual"], key='c3_espirito')
-
-    with st.expander("Cap. 4 a 10 – Talentos, Impacto e Histórico"):
-        st.text_area("Um momento em que foi autêntico(a):", key='c4_autentico')
-        st.text_input("Seus três maiores talentos:", key='c4_talentos')
-        st.text_area("Um desafio significativo superado:", key='c4_desafio')
-        st.text_area("Por que sua história merece ser contada?", key='c5_reflexao')
-        st.text_area("Descreva uma conquista marcante (Cap 8):", key='c8_memoria')
-        st.text_area("Formação acadêmica e Experiências (Cap 10):", key='c10_formacao')
-
-# ==================================================
-# BLOCO B – CAPÍTULOS 11 A 20
-# ==================================================
 with tab_b:
-    st.header("Bloco B: Seleção, Legado e Relações")
-    
-    with st.expander("Cap. 11 a 14 – Decisões e Hobby"):
-        st.text_area("Critérios para selecionar pessoas/projetos:", key='c11_criterios')
-        st.text_area("Momento decisivo de virada:", key='c12_virada')
-        st.text_input("Qual o seu Hobby principal?", key='c14_hobby')
-        st.text_area("Como surgiu esse hobby e quem influenciou?", key='c14_origem')
-        st.text_area("Momento em que o hobby trouxe paz:", key='c14_paz')
-
-    with st.expander("Cap. 15 a 16 – Papéis e Virtudes"):
-        st.multiselect("Papéis que exerce hoje:", ["Mãe/Pai", "Filho(a)", "Líder", "Amigo(a)", "Mentor"], key='c15_escolhidos')
-        st.multiselect("Virtudes principais:", ["Perdão", "Honra", "Gratidão", "Paciência", "Coragem", "Disciplina"], key='c16_virtudes')
+    with st.expander("Cap. 11 a 20"):
+        st.text_area("Momento de virada: (Cap 12)", key='c12_virada')
+        st.text_input("Hobby principal: (Cap 14)", key='c14_hobby')
+        st.text_area("Origem do Hobby: (Cap 14)", key='c14_origem')
+        # AQUI ESTÃO AS 41 VIRTUDES
+        st.multiselect("Escolha as virtudes que definem o seu caráter: (Cap 16)", VIRTUDES_LISTA, key='c16_virtudes')
         st.text_area("Exemplo de virtude em ação:", key='c16_exemplo')
+        st.text_input("Brincadeira de infância: (Cap 19)", key='c19_infancia')
 
-    with st.expander("Cap. 19 a 20 – Fases e Hábitos"):
-        st.text_input("Brincadeira de Infância:", key='c19_infancia')
-        st.text_area("O que marcou sua adolescência?", key='c19_adolescencia')
-        st.text_area("Um hábito que trouxe mudança real:", key='c20_exemplo')
-
-# ==================================================
-# BLOCO C – CAPÍTULOS 21 A 26
-# ==================================================
 with tab_c:
-    st.header("Bloco C: Planejamento e Futuro")
-    with st.expander("Cap. 21 a 26 – Visão e Mensagem Final"):
-        st.text_area("Principal sonho para os próximos anos:", key='c21_sonho')
-        st.text_area("Passos práticos necessários:", key='c21_plano')
-        st.multiselect("Sentidos que o livro deve despertar:", ["Visão", "Tato", "Olfato", "Audição"], key='c26_sinestesia')
-        st.text_area("Qual mensagem final deseja deixar como legado?", key='c26_legado')
+    with st.expander("Cap. 21 a 26"):
+        st.text_area("Seu grande sonho: (Cap 21)", key='c21_sonho')
+        st.text_area("Como imagina que este livro alcançará pessoas? (Cap 25)", key='c25_alcance')
+        st.text_area("Mensagem de legado final: (Cap 26)", key='c26_legado')
+
+# --- GERADOR ROBUSTO ---
+def gerar_narrativa_completa(estilo, genero=None):
+    nome = get_safe('nome_autor', 'Viajante')
+    virtudes = get_safe('c16_virtudes')
+    
+    # Construção do texto baseando-se em TODAS as respostas
+    intro = f"# A JORNADA DE {nome.upper()}\n\n"
+    
+    corpo = f"A história de {nome} não é apenas um relato de tempo, mas de renovação mental. "
+    corpo += f"Para {nome}, o ato de evoluir significa: '{get_safe('c1_renovar')}'. \n\n"
+    
+    corpo += f"## 💎 O ALICERCE DAS VIRTUDES\n"
+    corpo += f"No centro do seu caráter, encontramos o cultivo de virtudes fundamentais: {virtudes}. "
+    corpo += f"Um exemplo prático disso foi quando {get_safe('c16_exemplo')}. \n\n"
+    
+    corpo += f"## 🚀 IMPACTO E LEGADO\n"
+    corpo += f"Com um olhar voltado para o futuro, o sonho de {nome} é {get_safe('c21_sonho')}. "
+    corpo += f"Este livro nasce com uma missão clara: '{get_safe('c25_alcance')}'. \n\n"
+    
+    corpo += f"---\n**MENSAGEM FINAL:** {get_safe('c26_legado')}"
+    
+    return intro + corpo
+
+# --- SIDEBAR ---
+with st.sidebar:
+    estilo = st.selectbox("Estilo:", ["Hobby", "Infantil", "Profissional"])
+    if st.button("🚀 GERAR BIOGRAFIA ROBUSTA"):
+        st.session_state.livro_gerado = gerar_narrativa_completa(estilo)
+
+with tab_d:
+    if st.session_state.livro_gerado:
+        st.markdown(st.session_state.livro_gerado)
 
 # ==================================================
 # LÓGICA DE NARRATIVA (INSPIRADA NO SEU ARQUIVO)
@@ -178,6 +175,7 @@ with tab_d:
         st.download_button("📥 Baixar Biografia", st.session_state.livro_gerado, file_name="biografia.txt")
     else:
         st.info("Preencha as informações e clique em 'Gerar' na lateral.")
+
 
 
 
