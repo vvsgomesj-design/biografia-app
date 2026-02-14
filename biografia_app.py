@@ -19,7 +19,7 @@ tab_a, tab_b, tab_c, tab_d = st.tabs([
 
  # CAPÍTULO 1 – NEUROPLASTICIDADE E MINDSET
     # ==================================================
-    with st.expander("Cap. 1 – Neuroplasticidade e Mudança de Mindset"):
+    with st.expander("Cap. 1 – Neuroplasticidade e Mudança de Mindset")
         c1_mudanca = st.radio(
             "Você acredita que é possível mudar padrões de pensamento?",
             ["Sim", "Não", "Não tenho certeza"]
@@ -981,6 +981,7 @@ with tab_d:
         )
     else:
         st.info("Clique no botão na barra lateral para gerar sua biografia.")
+
 
 
 
