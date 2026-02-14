@@ -342,9 +342,6 @@ with tab_d:
         )
     else:
         st.info("Clique no botão na barra lateral para gerar sua biografia.")
-    else:
-        st.session_state.livro_gerado = gerar_biografia_infantil(genero)
-    st.sidebar.success("Biografia gerada! Vá para a aba '📖 Livro Gerado'.")
 
 
 
