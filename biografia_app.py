@@ -17,9 +17,18 @@ tab_a, tab_b, tab_c, tab_d = st.tabs([
     "📖 Livro Gerado"
 ])
 
- # CAPÍTULO 1 – NEUROPLASTICIDADE E MINDSET
+# ==================================================
+# BLOCO A – CAPÍTULOS 1 A 10
+# ==================================================
+with tab_a:
+    st.header("Bloco A: Fundamentos, Identidade e Organização")
+
+    nome_autor = st.text_input("Nome Completo:", "Autor Desconhecido")
+
     # ==================================================
-    with st.expander("Cap. 1 – Neuroplasticidade e Mudança de Mindset")
+    # CAPÍTULO 1 – NEUROPLASTICIDADE E MINDSET
+    # ==================================================
+    with st.expander("Cap. 1 – Neuroplasticidade e Mudança de Mindset"):
         c1_mudanca = st.radio(
             "Você acredita que é possível mudar padrões de pensamento?",
             ["Sim", "Não", "Não tenho certeza"]
@@ -44,13 +53,9 @@ tab_a, tab_b, tab_c, tab_d = st.tabs([
             ["Sim", "Não", "Ainda estou tentando"]
         )
 
-        c1_motiva = st.text_input(
-            "Em uma palavra, o que mais te motiva a mudar?"
-        )
+        c1_motiva = st.text_input("Em uma palavra, o que mais te motiva a mudar?")
 
-        c1_renovar = st.text_area(
-            "O que significa para você 'renovar a mente'?"
-        )
+        c1_renovar = st.text_area("O que significa para você 'renovar a mente'?")
 
     # ==================================================
     # CAPÍTULO 2 – IDENTIDADE EM CRISTO (HERDEIRO)
@@ -130,13 +135,9 @@ tab_a, tab_b, tab_c, tab_d = st.tabs([
             "Descreva um momento em que você se sentiu verdadeiramente autêntico(a):"
         )
 
-        c4_talentos = st.text_input(
-            "Quais são seus três maiores talentos?"
-        )
+        c4_talentos = st.text_input("Quais são seus três maiores talentos?")
 
-        c4_desafio = st.text_area(
-            "Relate um desafio significativo que você superou:"
-        )
+        c4_desafio = st.text_area("Relate um desafio significativo que você superou:")
 
         c4_aprendizado = st.text_area(
             "O que esse desafio te ensinou sobre você mesmo(a)?"
@@ -164,6 +165,7 @@ tab_a, tab_b, tab_c, tab_d = st.tabs([
         c5_reflexao = st.text_area(
             "Por que você acredita que sua história merece ser contada?"
         )
+
     # ==================================================
     # CAPÍTULO 6 – POSIÇÃO CONFORME A BÍBLIA
     # ==================================================
@@ -243,13 +245,9 @@ tab_a, tab_b, tab_c, tab_d = st.tabs([
             ]
         )
 
-        c8_memoria = st.text_area(
-            "Descreva uma conquista que marcou sua vida:"
-        )
+        c8_memoria = st.text_area("Descreva uma conquista que marcou sua vida:")
 
-        c8_aprendizado = st.text_area(
-            "O que essa conquista te ensinou?"
-        )
+        c8_aprendizado = st.text_area("O que essa conquista te ensinou?")
 
     # ==================================================
     # CAPÍTULO 9 – PRA QUEM, POR QUÊ E COMO
@@ -257,13 +255,7 @@ tab_a, tab_b, tab_c, tab_d = st.tabs([
     with st.expander("Cap. 9 – Público, Propósito e Forma"):
         c9_publico = st.multiselect(
             "Para quem esta biografia é direcionada?",
-            [
-                "Família",
-                "Amigos",
-                "Estudantes",
-                "Líderes",
-                "Público em geral"
-            ]
+            ["Família", "Amigos", "Estudantes", "Líderes", "Público em geral"]
         )
 
         c9_por_que = st.multiselect(
@@ -279,13 +271,7 @@ tab_a, tab_b, tab_c, tab_d = st.tabs([
 
         c9_como = st.multiselect(
             "Como você gostaria que sua história fosse sentida pelo leitor?",
-            [
-                "Acolhedora",
-                "Inspiradora",
-                "Realista",
-                "Transformadora",
-                "Leve"
-            ]
+            ["Acolhedora", "Inspiradora", "Realista", "Transformadora", "Leve"]
         )
 
         c9_reflexao = st.text_area(
@@ -311,8 +297,9 @@ tab_a, tab_b, tab_c, tab_d = st.tabs([
         c10_reflexao = st.text_area(
             "Como sua trajetória prepara você para o futuro?"
         )
+
 # ==================================================
-# BLOCO 3 — CAPÍTULOS 11 A 15
+# BLOCO B – CAPÍTULOS 11 A 20
 # ==================================================
 with tab_b:
     st.header("Bloco B: Seleção, Legado, Talento e Relações")
@@ -320,7 +307,7 @@ with tab_b:
     # ==================================================
     # CAPÍTULO 11 – TÉCNICAS DE SELEÇÃO
     # ==================================================
-    with st.expander("Cap. 11 – Técnicas de Seleção e Critérios")
+    with st.expander("Cap. 11 – Técnicas de Seleção e Critérios"):
         c11_etica = st.radio(
             "Para você, ética é determinante em qualquer escolha importante?",
             ["Sim", "Não"]
@@ -328,13 +315,7 @@ with tab_b:
 
         c11_contratacoes = st.multiselect(
             "Você considera contratar apoio para este projeto?",
-            [
-                "Editora",
-                "Ghost Writer",
-                "Designer",
-                "Gráfica",
-                "Nenhum"
-            ]
+            ["Editora", "Ghost Writer", "Designer", "Gráfica", "Nenhum"]
         )
 
         c11_criterios = st.text_area(
@@ -345,13 +326,9 @@ with tab_b:
     # CAPÍTULO 12 – TÉCNICAS DE TREINAMENTO
     # ==================================================
     with st.expander("Cap. 12 – Treinamento, Aprendizado e Virada"):
-        c12_virada = st.text_area(
-            "Descreva um momento decisivo de virada na sua vida:"
-        )
+        c12_virada = st.text_area("Descreva um momento decisivo de virada na sua vida:")
 
-        c12_aprendeu = st.text_area(
-            "O que esse momento te ensinou?"
-        )
+        c12_aprendeu = st.text_area("O que esse momento te ensinou?")
 
         c12_aplicacao = st.radio(
             "Você costuma aplicar rapidamente o que aprende?",
@@ -367,9 +344,7 @@ with tab_b:
             ["Proativo(a)", "Procrastinador(a)"]
         )
 
-        c13_tempo = st.text_area(
-            "O que costuma roubar seu tempo e energia?"
-        )
+        c13_tempo = st.text_area("O que costuma roubar seu tempo e energia?")
 
         c13_mudanca = st.text_area(
             "O que você sente que precisa mudar para deixar um legado melhor?"
@@ -379,9 +354,7 @@ with tab_b:
     # CAPÍTULO 14 – TALENTO E HOBBY
     # ==================================================
     with st.expander("Cap. 14 – Talento, Hobby e Fonte de Paz"):
-        c14_hobby = st.text_input(
-            "Qual talento ou hobby faz parte da sua história?"
-        )
+        c14_hobby = st.text_input("Qual talento ou hobby faz parte da sua história?")
 
         c14_origem = st.text_area(
             "Como esse talento ou hobby surgiu e quem te influenciou?"
@@ -416,17 +389,7 @@ with tab_b:
             papeis_list
         )
 
-        c15_reflexao = st.text_area(
-            "Como esses papéis influenciam quem você é?"
-        )
-# ==================================================
-# BLOCO 4 — CAPÍTULOS 16 A 21
-# ==================================================
-
-# =========================
-# CONTINUA NA TAB_B
-# =========================
-with tab_b:
+        c15_reflexao = st.text_area("Como esses papéis influenciam quem você é?")
 
     # ==================================================
     # CAPÍTULO 16 – VIRTUDES
@@ -478,12 +441,7 @@ with tab_b:
     with st.expander("Cap. 18 – Terceirização e Confiança"):
         c18_delega = st.selectbox(
             "Como você se sente ao delegar tarefas?",
-            [
-                "Alívio",
-                "Insegurança",
-                "Medo de perder o controle",
-                "Entusiasmo"
-            ]
+            ["Alívio", "Insegurança", "Medo de perder o controle", "Entusiasmo"]
         )
 
         c18_dificuldade = st.text_area(
@@ -502,13 +460,9 @@ with tab_b:
             "Quais brincadeiras ou atividades marcaram sua infância?"
         )
 
-        c19_adolescencia = st.text_area(
-            "O que mais marcou sua adolescência?"
-        )
+        c19_adolescencia = st.text_area("O que mais marcou sua adolescência?")
 
-        c19_adulta = st.text_area(
-            "Qual foi (ou é) o auge da sua fase adulta?"
-        )
+        c19_adulta = st.text_area("Qual foi (ou é) o auge da sua fase adulta?")
 
         c19_aprendizado = st.text_area(
             "Que aprendizado cada fase da vida te trouxe?"
@@ -523,18 +477,15 @@ with tab_b:
             ["Sim", "Tentando", "Não"]
         )
 
-        c20_exemplo = st.text_area(
-            "Cite um pequeno hábito que já trouxe grande mudança:"
-        )
+        c20_exemplo = st.text_area("Cite um pequeno hábito que já trouxe grande mudança:")
 
-        c20_dificuldade = st.text_area(
-            "O que mais dificulta sua constância?"
-        )
+        c20_dificuldade = st.text_area("O que mais dificulta sua constância?")
 
-# =========================
-# TAB_C
-# =========================
+# ==================================================
+# BLOCO C – CAPÍTULOS 21 A 26
+# ==================================================
 with tab_c:
+    st.header("Bloco C: Estrutura do Livro, Vendas e Experiência")
 
     # ==================================================
     # CAPÍTULO 21 – PLANEJAMENTO E VISÃO DE FUTURO
@@ -550,18 +501,11 @@ with tab_c:
             ["Erros", "Acertos", "Observando outras pessoas"]
         )
 
-        c21_sonho = st.text_area(
-            "Qual é o principal sonho ou objetivo para os próximos anos?"
-        )
+        c21_sonho = st.text_area("Qual é o principal sonho ou objetivo para os próximos anos?")
 
         c21_plano = st.text_area(
             "Que passos práticos você acredita que precisa dar a partir de agora?"
         )
-# ==================================================
-# BLOCO 5 — CAPÍTULOS 22 A 26
-# ==================================================
-with tab_c:
-    st.header("Bloco C: Estrutura do Livro, Vendas e Experiência")
 
     # ==================================================
     # CAPÍTULO 22 – FLUXOGRAMA EDITORIAL
@@ -586,9 +530,7 @@ with tab_c:
             ]
         )
 
-        c22_reflexao = st.text_area(
-            "Por que esses elementos são importantes para você?"
-        )
+        c22_reflexao = st.text_area("Por que esses elementos são importantes para você?")
 
     # ==================================================
     # CAPÍTULO 23 – ORGANIZAÇÃO E DISTRIBUIÇÃO
@@ -608,12 +550,7 @@ with tab_c:
 
         c23_publicacao = st.radio(
             "Como você pretende publicar?",
-            [
-                "Independente",
-                "Plataformas digitais",
-                "Editoras",
-                "Ainda não sei"
-            ]
+            ["Independente", "Plataformas digitais", "Editoras", "Ainda não sei"]
         )
 
         c23_reflexao = st.text_area(
@@ -621,7 +558,7 @@ with tab_c:
         )
 
     # ==================================================
-    # CAPÍTULO 24 – EXPERIÊNCIA VISUAL E MAPAS
+    # CAPÍTULO 24 – EXPERIÊNCIA VISUAL E APOIOS
     # ==================================================
     with st.expander("Cap. 24 – Experiência Visual e Apoios"):
         c24_mapas = st.radio(
@@ -629,9 +566,7 @@ with tab_c:
             ["Sim", "Não"]
         )
 
-        c24_estetica = st.text_area(
-            "Como você imagina a estética visual do livro?"
-        )
+        c24_estetica = st.text_area("Como você imagina a estética visual do livro?")
 
         c24_apoios = st.multiselect(
             "Quais recursos visuais ou de apoio você gostaria de incluir?",
@@ -681,12 +616,9 @@ with tab_c:
             ]
         )
 
-        c26_legado = st.text_area(
-            "Qual mensagem final você deseja deixar como legado?"
-        )
+        c26_legado = st.text_area("Qual mensagem final você deseja deixar como legado?")
 
-# ==================================================
-# FUNÇÕES DE GERAÇÃO (cada uma com seu estilo)
+ FUNÇÕES DE GERAÇÃO (cada uma com seu estilo)
 # ==================================================
 
 def gerar_biografia_hobby():
@@ -981,6 +913,7 @@ with tab_d:
         )
     else:
         st.info("Clique no botão na barra lateral para gerar sua biografia.")
+
 
 
 
