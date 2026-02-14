@@ -318,7 +318,7 @@ with tab_d:
             mime="text/plain"
         )
     else:
-        st.info("Clique no botão na barra lateral para gerar sua biografia."):
+        st.info("Clique no botão na barra lateral para gerar sua biografia.")
     if estilo == "Hobby / Passatempo":
         st.session_state.livro_gerado = gerar_biografia_hobby()
     elif estilo == "Profissional":
@@ -342,6 +342,7 @@ with tab_d:
         )
     else:
         st.info("Clique no botão na barra lateral para gerar sua biografia.")
+
 
 
 
