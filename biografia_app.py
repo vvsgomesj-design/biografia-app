@@ -3,6 +3,22 @@ from datetime import datetime
 
 # --- 1. CONFIGURAÇÃO E INICIALIZAÇÃO ---
 st.set_page_config(page_title="Gerador Trampolim", layout="wide")
+# --- SISTEMA DE SENHA SIMPLES ---
+def check_password():
+    if "password_correct" not in st.session_state:
+        st.text_input("Digite a senha do livro para acessar:", type="password", key="password")
+        if st.button("Entrar"):
+            if st.session_state["password"] == "BIOGRAFIA2024": # Sua senha aqui
+                st.session_state["password_correct"] = True
+                st.rerun()
+            else:
+                st.error("Senha incorreta!")
+        return False
+    return True
+
+if not check_password():
+    st.stop() # Interrompe o código aqui se a senha não estiver correta
+# --- RESTANTE DO SEU CÓDIGO ABAIXO ---
 
 # Inicializa o estado para evitar erro de página em branco
 if 'livro_gerado' not in st.session_state:
@@ -846,6 +862,7 @@ with tab_d:
         )
     else:
         st.info("Clique no botão na barra lateral para gerar sua biografia.")
+
 
 
 
